@@ -1,0 +1,7 @@
+[project]
+name = "carveouts-poc"
+version = "0.0.1"
+description = "Initial research on early carve-out signals detection"
+readme = "README.md"
+dependencies = [
+]
