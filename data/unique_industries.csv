@@ -1,0 +1,261 @@
+code,Descriptor,Description
+i0,Agriculture,"All farming, forestry, commercial fishing, hunting and trapping."
+i01001,Farming,"Agricultural crop production, seed supply and the raising of livestock."
+i01002,Horticulture,"Growing horticultural crops such as fruit, vegetables and flowers."
+i0100206,Fruit Growing,"Growing, cultivating and harvesting of fruit and tree nut crops."
+ilsfarm,Livestock Farming,"Raising animals for the production of food, wool, hide, fur or for the purpose of selling. Includes poultry farming, bee farming and horse farming."
+i0100105,Cattle Farming,Raising cattle for meat or dairy production.
+i0100132,Oilseed/Grain Farming,Growing oilseed or grain crops. Producing oilseed or grain seeds. These crops have an annual life cycle and are typically grown in open fields.
+isugar,Sugar Farming,"Growing, cultivating and harvesting of sugar beet and sugarcane crops."
+iaut,Automotive,Manufacturing and repair/maintenance of motorized vehicles and vehicle parts.
+icvtech,Connected Vehicle Technologies,"Connectivity technologies that allow bi-directional communication between the vehicle and other devices, networks or vehicles. Examples of these technologies include automotive telematics and connected cars."
+i353,Motor Vehicle Parts,"Motor vehicle parts and accessories including windshields, interiors and wheels, chassis and panels."
+i351,Motor Vehicles,Complete motorized highway vehicles. Includes All Terrain Vehicles.
+i35104,Alternative Fuel Vehicles,"Motor vehicles powered by alternatives to gasoline and diesel. ""Green"" cars."
+i35102,Commercial Vehicles,Vehicles intended for commercial use.
+i35101,Passenger Cars,Automobiles. Includes passenger minivans and people carriers.
+ibasicm,Basic Materials/Resources,"The discovery, development and processing of basic materials and resources. Includes mining and processing of metals and non-metals, chemicals and forestry products."
+i25,Chemicals,Transformation of organic and inorganic raw materials by a chemical process and the formulation of products.
+iagro,Agrochemicals,Chemicals used in horticulture or agriculture to improve crop production.
+i2512,Basic Organic Chemicals,"Basic organic chemicals. Includes gum and wood chemicals, coal tar distillates and ethyl alcohol."
+imet,Mining/Quarrying,Mining and quarrying activities.
+i111,Coal Mining,"Mining bituminous coal, anthracite and lignite by underground mining, auger mining, strip mining, culm bank mining and other surface mining. Beneficiating (i.e. preparing) coal (e.g. cleaning, washing, screening and sizing coal). Also covers related support and exploration services."
+i211,Metal Ore Mining,"Developing mine sites or mining metallic minerals, and establishments primarily engaged in ore dressing and beneficiating (i.e. preparing) operations, such as crushing, grinding, washing, drying, sintering, concentrating, calcining and leaching. Also covers related support and exploration services."
+infmore,Non-ferrous Metal Ore Mining,"Developing the mine site, mining and beneficiating (i.e. preparing) non-ferrous metal ores."
+i231,Non-metallic Mineral Mining/Quarrying,"Mining or quarrying non-metallic minerals (except fuels). Also included are certain well and brine operations, and preparation plants primarily engaged in beneficiating (e.g. crushing, grinding, washing and concentrating) nonmetallic minerals. Also covers related support and exploration services."
+i2311,Stone Mining/Quarrying,"Mining or quarrying dimension stone (i.e. rough blocks and/or slabs of stone), or mining and quarrying crushed and broken stone and/or preparation plants primarily engaged in beneficiating stone (e.g. crushing, grinding, washing and sizing)."
+ipper,Paper/Pulp,"Paper products, paper and pulp milling."
+i22,Primary Metals,"Ferrous and non-ferrous metals refined from ore, pig or scrap, using electrometallurgical and other process metallurgical techniques. Also metal alloys and super alloys."
+i221,Ferrous Metals,"Ferrous metals such as iron ore, pig iron, steel and ferroalloys."
+isteel,Steel Production,"The production of steel in raw form and manufacturing shapes (bar, plate, rod, sheet, strip) by mills or smelters."
+i224,Non-ferrous Metals,The primary production of nonferrous metals by smelting ore and/or the primary refining of nonferrous metals by electrolytic methods or other processes.
+i46,Wood Products,"Wood products, such as lumber, plywood and veneers. Does not include wooden packaging or wood flooring."
+ibcs,Business/Consumer Services,Provision of services aimed at the business or private consumer. Includes companies that do not provide goods or services but serve as vehicles for business transactions or investments in other companies.
+iacc,Accounting/Consulting,All accountancy and consultancy services.
+i836,Accounting,"Provision of services, such as auditing of accounting records, designing accounting systems, preparing financial statements, developing budgets, preparing tax returns, processing payrolls, bookkeeping and billing."
+icnsl,Business Consultancy,Provision of expert assistance and advice to businesses and other organizations.
+i83109,Risk Management Services,The provision of services which assist in managing or preventing risks of financial loss and ensuring regulatory compliance. Also includes actuaries (non-insurance).
+iadmin,Administrative/Support Services,Services which provide support and manage administrative tasks for other businesses.
+iadv,Advertising/Marketing/Public Relations,"All advertising, marketing, market research, promotional and public relations services."
+i83952,Market Research/Public Relations,"The provision of market research, public opinion research and public relations services."
+imark,Marketing Services,"The provision of marketing services, including advertising media and events promotion, direct mail, inbound telephone service campaigns, outbound telephone marketing."
+i838,Advertising Services,"The planning, creation and handling of advertising campaigns across various media platforms, including newspapers, magazines, radio, television, cinema and outdoor billboards."
+idirma,Direct Marketing,"A planned system of contacts seeking to produce a lead or an order. Using any media, direct marketing requires the use of a database to market directly to individuals."
+iclean,Commercial Cleaning Services,"Provision of commercial cleaning services, including building and facilities cleaning, clothing cleaning and car cleaning. For aircraft cleaning, use Ground Services (i7644)."
+i8394,Computer Services,"All services related to computers, including, but not limited to, hardware maintenance and repair, computer systems design and maintenance, support and integration services, data processing and recovery services."
+idserv,Data Services,"All services related to enterprise data storage, protection, processing and analytics. Includes both leasing of computing hardware for data storage/processing and DaaS (Data as a Service), IaaS (Infrastructure as a Service) and SaaS (Software as a Service) cloud-based solutions."
+iappsp,Cloud Computing,"Cloud computing is Internet-based computing, whereby shared resources, software and information are provided to computers and other devices on-demand. Includes application service providers, Software as a Service (SaaS), Infrastructure as a Service (IaaS), Platform as a Service (PaaS) and on-demand software."
+i983,Educational Services,"Instruction and training provided by specialized establishments, such as schools, colleges, universities and training centers. Includes the provision of distance education and online education services."
+iewm,Environment/Waste Management,Providing environmental and waste services.
+i9211,Waste Management/Recycling Services,"The collection, treatment and disposal of waste materials. Environmental cleanup and recycling activities."
+i92114,Waste Sorting/Recycling,"Separating recyclable waste (e.g. glass, paper, plastics, cans, food waste) from non-recyclable waste. Operating materials recovery and waste processing facilities. Excludes wastewater recycling and hazardous waste."
+i9212,Wastewater Treatment,"Waste-water collection, treatment and disposal systems."
+i98204,Parking Lots,"Businesses that provide parking space for vehicles, usually on an hourly, daily or monthly basis. Includes indoor or fenced bicycle parking spaces and valet parking services."
+i8395405,Recruitment Services,"Establishments providing recruitment services by attracting, selecting, screening and referring suitable candidates for particular job roles to their clients. Includes executive search, temporary employment services and background checking."
+i84,Rental/Leasing Services,Establishments that provide a wide array of tangible goods to customers in return for a periodic rental or lease payment.
+iautlsg,Road Vehicle Rental/Leasing,Renting or leasing road vehicles without drivers. Includes motorcycles and bicycles.
+i8395414,Scientific Research Services,Conducting original investigation undertaken on a systematic basis to gain new knowledge (research) and/or the application of research findings or other scientific knowledge for the creation of new products or processes (experimental development).
+imedres,Medical Research Services,"Conducting original investigation, undertaken on a systematic basis to gain new knowledge and/or the application of research findings or other medical knowledge for the creation of new pharmaceuticals or therapeutic treatments or better understanding of diseases."
+iphddd,Drug Discovery/Development,"Drug discovery and development, the process of identifying and evaluating potential drug candidates. Screening of biological targets and pre-clinical testing of potential drugs. Includes Contract Research Organizations."
+i923,Services to Facilities/Buildings,"Providing services to buildings, dwellings and other facilities such as parks, including janitorial services and landscaping and gardening services."
+iscsv,Specialized Consumer Services,"Services provided to consumers including auction houses, beauty and personal care, dating, wedding, photographic and funeral services, pet care and vehicle towing."
+i837,Technical Services,"Technical services including engineering services, analytical testing laboratories, design services, building inspection services and surveying services. For surveying as a part of oil, gas or mineral exploration, use ""Support Activities for Oil/Gas"" (i1300005) or ""Non-metallic Mineral Mining Support/Exploration (i232)"" or ""Metal Mining Support/Exploration"" (i212) respectively."
+i8372,Design Services,"Specialized design services. Includes interior design, industrial design, home design and graphic design. For fashion design, use ""Designer Clothing"" (idescl)."
+icnp,Consumer Goods,"Products and goods made for personal, household or office consumption. Does not include computers."
+ibaby,Baby Products,"Products designed specifically for use by infants or children under three years. Includes baby food, baby skin care products, baby furniture and household appliances such as baby bottle warmers."
+iclt,Clothing/Textiles,"All textiles, clothing and footwear."
+i453,Clothing,All clothing and clothing accessories.
+i451,Footwear,"Manufacturing of all types of footwear, including boots, shoes, sandals, slippers and sneakers. For sports footwear, use in conjunction with ""Sports Clothing/Footwear"" (isptwr)."
+i43,Textiles,"Yarn or fabric (natural or synthetic) for individual or industrial consumption. Preparation and spinning of fiber, knitting or weaving of fabric and the finishing of the textile."
+i455,Textile Furnishings,"Manufacturing of rugs, curtains, bed linens, mattresses and other household textile products."
+i472,Consumer Paper Products,Establishments primarily engaged in converting paper or paperboard into consumer products. Includes paper cups and plates. Excludes paper packaging; use 'Packaging' (ipap).
+idurhg,Durable Household Products,"Manufacturing of durable household products such as domestic appliances, tools, hardware and housewares."
+ihome,Home Electronics/Appliances,Home electronics and appliances.
+i34542,Audio/Video Equipment,Audio and video equipment for personal entertainment. Excludes handheld audio/video devices.
+ihouse,Houseware,"Housewares including china, glassware, cutlery and kitchenware."
+i41,Food/Beverages,Transforming livestock and agricultural crops into food and drink products.
+ibevrge,Beverages/Drinks,The production of alcoholic and nonalcoholic drinks products. Covers both hot and cold beverages.
+ialco,Alcoholic Beverages/Drinks,"Alcoholic drinks including wine, beer and spirits."
+i426,Wine,"Wine manufactured from grapes and other fruits. Includes cider, fortified and non-alcoholic wine. Does not include brandy."
+inonal,Non-alcoholic Beverages/Drinks,"Manufacturing of non-alcoholic drinks products, including both hot and cold beverages like tea, coffee, juice and soft drinks. Includes ice manufacturing."
+i428,Soft Drinks,"Manufacturing of soft drinks - non-alcoholic, often carbonated, beverages that contain additives such as artificial sweeteners and flavors. Includes manufacturing of fruit juices."
+ifood,Food Products,"The manufacturing, processing and distribution of food products."
+i4221,Animal Feed,"Manufacturing of feed for animals from ingredients such as grains, oilseed mill products and meat products. Includes pet food. For soybean meal, use in conjunction with Soy Foods (isoya)."
+i412,Animal Slaughtering/Processing,Slaughtering animals and meat processing.
+i413,Dairy Products,Manufacturing of dairy products made from raw or processed milk.
+i416,Flour/Malt Products,"Flour or grain milling and producing flour mixes, doughs, dry pasta or noodles of own or purchased flour."
+ifadd,Food/Drink Additives,"Substances, natural or artificial, that are added to food or drink during processing to enhance its flavor, texture, appearance, or to extend its shelf life. Primary examples of these additives include preservatives, antioxidants, flavor enhancers, sweeteners, emulsifiers, stabilizers and thickeners."
+i414,Preserved Foods,"Manufacturing of food preserved by various methods, including freezing, pickling, canning, dehydrating and curing."
+i421,Sugar Products,"Manufacturing of sugar, chocolate and confectionery from processed sugarcane, cocoa or sugar beet. Includes sugar substitutes."
+ifurn,Furniture,"Manufacturing of all types of household, institutional, office or street furniture."
+ihimpro,Home Improvement Products,Equipment and products used for home and garden improvement.
+i441,Leather/Fur Goods,"Leather, fur and articles made of them. Tanning, currying and finishing hides and skins. Dyeing and dressing furs."
+ilgood,Leisure/Travel Goods,Products and goods made for travel or leisure.
+i3733,Photographic Equipment,"Manufacturing of photographic equipment such as cameras, digital projectors and film developing equipment."
+isptgds,Sports Goods,"Sports clothing and footwear, sports equipment and sports accessories."
+i4941,Toys/Games,"Manufacturing of toys and games, including video games/consoles."
+iluxgds,Luxury Goods,"Manufacturing of high-end, luxury or designer items; primary examples include designer clothing, fine watches, jewelry and perfumes."
+inondhg,Nondurable Household Products,Manufacturing of non-durable household goods. Includes office supplies.
+ioffeq,Office Equipment/Supplies,"Office products, equipment and supplies."
+i3301,Electronic Office Equipment,"Office machinery (except computers), such as calculators, typewriters, photocopiers, paper shredders, word processors and laminating machines."
+ipcare,Personal Care Products/Appliances,Personal care and beauty products and appliances. Includes cosmetics.
+i258,Cosmetics/Toiletries,"Personal care products including hair care, oral care and skin care products."
+i2583,Skin Care Products,"Skin care preparations such as face creams, moisturizers, lotions and other cosmetic preparations."
+i429,Tobacco Products,"Products consisting of or containing tobacco, such as cigars, rolling tobacco, snuff and heated tobacco products. For e-cigarettes/vaping products, use ""Electronic Cigarettes"" (ievd)."
+i1,Energy,"The production, processing and supply of energy."
+ialtful,Alternative Fuels,"Methanol, denatured ethanol and other alcohols, separately or in mixtures with gasoline or other fuels. Fuels yielding substantial environmental benefits. Fuel derived from organic matter other than fossil fuels. Includes biofuels."
+i16,Electricity/Gas Utilities,"Provision of electric power and natural gas through a permanent infrastructure of lines, mains and pipes."
+ieutil,Electric Utilities,"Provision of electric power through a permanent infrastructure of lines, mains, and pipes."
+i16101,Electric Power Generation,Operating electric power generation facilities. These facilities produce electricity by converting other forms of energy into electrical energy. They provide electricity to transmission systems or to electric power distribution systems.
+i5020044,Power Station Construction,"Electric power plant construction. Includes co-generation, hydro-electric and nuclear power plants."
+i163,Renewable Energy Generation,"Operating electric power generation facilities to convert renewable forms of energy, such as solar, wind or tidal power, into electrical energy."
+i16102,Electric Power Transmission,"Transmitting electricity in bulk over long distances, typically from power generation facilities, such as power plants or renewable energy sources, to electrical substations or distribution centers. This stage in the electricity supply chain involves high-voltage lines and equipment to minimize energy losses during transmission."
+ifosfl,Fossil Fuels,"Exploration, extraction, refining, transportation and distribution of hydrocarbon-containing materials, such as coal, petroleum, natural gas or peat, formed in the geological past from the remains of living organisms, which can be burned for energy."
+icoal,Coal,"Exploration, mining, processing, transportation and distribution of coal and its derivatives."
+ioilgas,Oil/Gas,"Exploration, extraction, refining, transportation and distribution of petroleum and natural gas and their derivatives. Includes upstream, midstream and downstream operations."
+igasin,Natural Gas,"Exploration, extraction, processing, transportation and distribution of natural gas and its derivatives."
+ioilin,Oil,"Exploration, extraction, refining, transportation and distribution of petroleum and its derivatives."
+i14,Oil/Gas Downstream Operations,"Operations involving the conversion of oil/petroleum and gas into finished products. For petroleum or natural gas wholesale, use ""Energy Wholesalers"" (iengwh)."
+imidstr,Oil/Gas Midstream Operations,"Operations involving the storage of crude oil, natural gas or natural gas liquids after extraction and its delivery to downstream processing facilities. Includes the logistics of arranging storage and delivery. For more granular oil or natural gas transportation and storage operations, use in combination with relevant codes under ""Freight Transport/Logistics"" (icargo)."
+i1300006,Pipeline Transportation,Use of transmission pipelines to transport crude oil and natural gas. Does not include distribution of petroleum products.
+i13,Oil/Gas Upstream Operations,"Operating and/or developing oil and gas fields. Includes exploration, drilling, completing, equipping wells, mining and extraction of oil from oil shale and oil sands, and the recovery of hydrocarbon liquids."
+iofsho,Offshore Drilling,Operating offshore platforms that explore for or extract oil or natural gas that lies below the seabed. Use in combination with specific exploration or extraction codes for more targeted results.
+i1300005,Support Activities for Oil/Gas,"Performing oil and gas field services on a contract or fee basis. Excavating slush pits and cellars, grading and building foundations at well locations. Also includes well surveying, running, cutting and contract drilling."
+ifinal,Financial Services,"Provision of financial services encompassing accounting, banking, investment and insurance."
+ibnk,Banking/Credit,Provision of banking and credit services such as accepting deposits and lending funds. Includes non-bank financial institutions providing credit or other money-related services such as currency exchange and money transfers.
+i814,Banking,Provision of banking services. Accepting deposits and in lending funds from these deposits.
+i81402,Commercial Banking,"Financial institutions primarily engaged in accepting deposits, making various loans and offering basic financial services to the general public and businesses."
+i81501,Credit Types/Services,Credit services generally offered by non-banking credit providers such as payday loan companies and peer-to-peer lenders.
+i8150105,Consumer Lending,Provision of unsecured cash loans to consumers.
+iplastic,Electronic Payment Systems,Systems which enable the payments for goods or services via the internet or other telecommunications network. Excludes online banking.
+ivicu,Virtual Currencies/Cryptocurrencies,"Digital coinage systems operating independently of central banks. Includes companies that promote products or services that facilitate storage, cryptocurrency mining, trade and payment with such currencies. For central bank digital currencies, use the subject code ""Central Bank Digital Currencies"" (ECBDC)."
+ifmsoft,Financial Technology,"FinTech is the design and provision of technology solutions, products and platforms for businesses or individual customers in the financial services sector. Includes mobile payment technology, digital investment platforms, fraud prevention and tracking solutions, SME lending platforms, and financial data collection systems."
+i82,Insurance,"Underwriting (assuming the risk, assigning premiums and so forth) annuities and insurance policies or facilitating such underwriting by selling insurance policies, and by providing other insurance and employee-benefit related services."
+i82002,Life Insurance,"Provision of life insurance/assurance services, including accidental death insurance and annuities. For businesses providing both life and non-life insurance services use Full-line Insurance (i82001)."
+i82003,Non-life Insurance,Provision of non-life insurance services. For businesses providing both life and non-life insurance services use Full-line Insurance (i82001).
+i8200301,Health/Medical Insurance,Health and medical insurance policies. Group hospitalization plans and HMO establishments (except those providing healthcare services) are included in this industry.
+iprivhea,Private Health Insurance,Private health insurance can be broken down into two broad categories: Traditional and Managed Care.
+icaslty,Property/Casualty Insurance,"The provision of casualty insurance, liability insurance and property insurance, the latter of which includes covering the economic value of one or several objects (such as movable property in a home, car, boat, factory building or warehouse)."
+itfins,Transport/Freight Insurance,"Provision of insurance policies that offer financial protection against potential losses arising from theft, damages or delays-in-transit to vehicles and cargo. Includes liability coverage (legal claims arising from an accident)."
+iinv,Investing/Securities,"Financial investments, savings, securities and commodities dealing."
+i831,Financial Investment Services,"The provision of tailored services for the financial investment industry. Includes stockbroking, investment banking and asset management."
+i83102,Security Brokering/Dealing,Acting as agents (i.e. brokers) between buyers and sellers in buying or selling securities on a commission or transaction fee basis. Includes proprietary trading.
+i81502,Trusts/Funds/Financial Vehicles,"Funds, plans and/or programs organized to pool securities or other assets on behalf of shareholders or beneficiaries."
+ialtinv,Alternative Investments,"Emerging investment vehicles that are becoming increasingly important to high-net-worth investors. Includes hedge funds, private equity, venture capital, art and antiques, fine wines and other collectibles."
+i8150203,Private Equity,"The provision of capital for private companies via either direct investment or the purchasing of public companies with the goal of delisting them. These companies are often high risk investments and have not been able to secure finance by borrowing from banks or listing on the stock exchange. In return the investor will receive equity, and often a share of the profits or a board seat."
+i8150206,Investment Trusts,"Publicly traded investment companies that raise a fixed amount of capital through an initial public offering. After the initial IPO, the investment fund is closed. The fund is then structured, listed and traded like a stock on a stock exchange."
+i815020602,Real Estate Investment Trusts,"Closed-end investment trusts that own or finance income-producing real estate across a range of property sectors. REITs can be publicly traded on major exchanges, publicly registered but non-listed, or private."
+ipension,Pension Funds,"Funds set up by a company, union, government entity, or other organizations to invest the financial contributions of members and employees, and pay out a retirement income, or pension, to those people when they reach retirement age. Includes provident funds and compulsory retirement savings plans."
+i951,Healthcare/Life Sciences,Provision of healthcare services directly or indirectly to human and animal patients. Includes biotechnology and pharmaceuticals.
+i2569,Biotechnology Services,"The application of recombinant DNA, cell fusion and new bioprocessing techniques in the manufacture of industrial products. Genetic engineering (gene modification) used primarily for pharmaceutical and agricultural applications (GM crops)."
+ibioph,Biopharmaceuticals,Biotech pharmaceuticals. Drugs whose manufacture involves micro-organisms or substances that living organisms produce. Includes enzymes and antibodies.
+iphhp,Healthcare Provision,Provision of healthcare services.
+ialtmed,Alternative Health Practitioners,"Qualified practitioners using healing techniques that are not part of the formal medical tradition, or complementary healthcare that does not involve the use of surgery or manufactured drugs. Chiropractors and homeopaths."
+iphhss,Healthcare Support Services,All services that support direct healthcare services. These do not provide direct medical advice or treatment.
+iphlab,Diagnostic/Medical Research Services,Provision of analytic or diagnostic services to the medical profession or patient.
+i372,Medical Equipment/Supplies,"Medical equipment and supplies. Laboratory apparatus, surgical and medical instruments, surgical appliances and supplies, dental equipment, ophthalmic and veterinary instruments."
+iphmed,Medical Devices/Apparatus,"Devices, instruments, apparatus and implants intended for use in the diagnosis, monitoring, prevention, treatment or alleviation of diseases or other medical conditions. Includes veterinary apparatus."
+itheradv,Diagnostic/Therapeutic Devices,"Equipment and tools used to diagnose, test or screen for health conditions as well as to treat the condition. Includes life support equipment."
+ieye,Eyewear/Ocular Implants,Corrective or protective devices and implants for the eyes.
+i257,Pharmaceuticals,"Medicinal drugs used for diagnosing, treating, preventing, or alleviating diseases and medical conditions in humans and animals."
+ihormp,Hormone Products,"Hormone drugs and treatments. Includes contraceptive pills, hormone based sexual health drugs and intrauterine devices."
+i2577,Neuroactive/Psychotropic Drugs,"Pharmaceuticals that impact the central nervous system to alter mood, cognition, perception, or physical functions."
+iindstrls,Industrial Goods,"Machinery, manufacturing plants, materials, and other goods for use or consumption by other industries. Includes aerospace and defense, industrial machinery, tools and metal fabrication."
+iaer,Aerospace/Defense,All military equipment and commercial aerospace products.
+i364,Aerospace Products/Parts,Aerospace equipment for military or commercial use.
+idef,Defense Equipment/Products,"Land, air and naval equipment and products for military use."
+i36104,Military Watercraft,"Surface combatants, submarines and submersibles for military use."
+i247,Glass/Glass Products,"Manufacturing of flat, pressed, blown or shaped glass."
+iindele,Industrial Electronics,"Electronic equipment, parts and components for commercial or industrial use."
+i342,Electrical Components/Equipment,"Power, distribution and specialty transformers. Includes electric motors, generators, motor generator sets, switchgear and switchboard apparatus."
+ietrack,Electronic Navigation/Tracking Systems,Electronic devices or systems used to aid navigation and/or determine or monitor the location or status of a person or object.
+iprici,Printed Circuit Boards,"Manufacturing of printed circuit boards, which are flat structures that hold and connect electronic components."
+issyst,Security Systems,"Means and devices used as security measures. Includes technology used for detection purposes, such as surveillance systems, security cameras, metal detectors and screening equipment."
+i34531,Semiconductors,"Semiconductors and related solid state devices. Includes integrated circuits, memory chips, microprocessors, diodes, transistors, solar cells and other optoelectronic devices."
+iintcir,Integrated Circuits,Integrated circuits are thin chips consisting of at least two interconnected semiconductor devices.
+ioptoel,Optoelectronic Devices,"Devices and components in which an optical input produces an electrical output, or in which electrical stimulation produces visible or infrared output. Includes optoelectronic coatings and films."
+i32,Machinery,Creating end products (machines) that apply mechanical force to perform work.
+irenewee,Renewable Energy Equipment,"Development and manufacturing renewable energy equipment utilizing sources such as solar, wind, tidal, geothermal, hydro and waves."
+i31,Metal Products,"Transforming metal into intermediate or end products (other than engineering). Forging, stamping, bending, forming and machining used to shape individual pieces of metal. Includes other processes, such as welding, assembling of parts, heat treating, enameling and electroplating, coating and engraving."
+ipap,Packaging,Manufacturing packaging products and materials. Includes paper and cardboard packaging.
+ilea,Leisure/Arts/Hospitality,"The provision of services or facilities in the sports, recreation, arts, leisure, hospitality and tourism industries."
+i97412,Entertainment Venues,"Live entertainment organizers and centers of amusement, educational and cultural entertainment."
+i97912,Gambling Industries,"Gambling facilities, such as casinos, bingo halls, gaming machines and video gaming terminals. Lottery organizers and off-track betting establishments. Turf accountants and bookmakers."
+i66,Lodgings/Restaurants/Bars,"Establishments that sell food, beverage preparation and accommodation services. Includes casino hotels."
+i665,Lodgings,"Provision of lodging or short-term accommodations for travelers, vacationers and others."
+i6651,Hotels/Motels,"Short-term lodging in facilities known as hotels, resorts, motor hotels, hostels, motels and guest houses."
+i661,Restaurants/Caterers,Establishments primarily engaged in the provision of meals and snacks to paying customers that are consumed either on- or off-premises; includes catering services provided on a contractual basis.
+i98209,Performing Arts/Sports Promotion,"Organizing, promoting or managing live performing arts productions, sports events and similar events, such as fairs, concerts and festivals."
+i97911,Sporting Facilities/Venues,"All professional and non-professional sports and recreational facilities, venues and teams. To be used on corporate news items, not sports scores and other general sports news."
+itourm,Tourism,"The tourism and travel industry including accommodation, and other components of the hospitality industry."
+imed,Media/Entertainment,"Printing, recording, broadcasting and online media."
+i971,Audiovisual Production,"Production of cinematic films, videos, television programs and other audiovisual content."
+idistr,Media Content Distribution,"The distribution of media, supply and delivery of film, video, books, newspapers, magazines and other media content. Includes online media distribution."
+i97411,Broadcasting,"Radio and television broadcasting. Broadcasting corporations, studios, stations and networks responsible for over the air, satellite or cable delivery of radio and television programs of entertainment, news, talk, etc."
+i8395465,Multimedia Content Services,"The provision of multimedia content (video, audio, photos, graphics and text) as a combined information package or service through online or traditional distribution channels."
+i8395463,Digital Content Services,"Digital content aggregation, curation and provision. Includes online news databases/aggregators."
+i475,Printing/Publishing,"Printing and publishing newspapers, periodicals, books, directories and greeting cards."
+i4756,Printing,"Printing and related support activities. Printing on paper, clothing, textiles, plastics and other materials. Includes newspaper, magazine and book printing."
+ipubl,Publishing,"Publishing and related support activities. Publishing newspapers, periodicals, books, directories and greeting cards."
+i4753,Book Publishing,"Establishments that carry out the design, editing and marketing activities necessary for producing and distributing books. These establishments may publish books in print, electronic or audio form."
+isound,Sound/Music Recording/Publishing,Production and distribution of sound recordings.
+icre,Real Estate/Construction,"Land and property transactions, the design and construction of buildings, civil engineering projects, demolition and the manufacture of building products."
+ibuildpr,Building Materials/Products,The manufacture of building products and materials.
+iconst,Construction,"The provision of construction services, including building construction, refurbishment and completion as well as heavy construction and specialized construction services."
+i501,Building Construction,"Construction of building projects including new work, additions, alterations and repair; general contracting, as well as land development and division."
+i5010023,Non-residential Building Construction,"Construction of commercial, industrial and institutional buildings such as factories, offices, warehouses, shops, hospitals and schools."
+i502,Heavy Construction,"Construction of heavy engineering and industrial projects (except buildings). The construction work performed may include new work, reconstruction or repairs. Civil engineering."
+i503,Special Trade Contractors,Specialized construction activities. Installation activities such as plumbing and electrical work. Wrecking and demolition work.
+ireest,Real Estate,"Estate agents, real estate investment trusts, land and property dealings."
+i85,Real Estate Services/Transactions,"Performing real estate transactions that involve rental, leasing, purchasing or selling on behalf of others and providing real estate related services, such as property management, appraisals, real estate escrow services, etc. Includes property developers."
+icireal,Commercial Real Estate,"Performing commercial real estate transactions, including rental, leasing, as well as purchasing and selling on behalf of others."
+irreal,Residential Real Estate,Residential property transactions.
+i64,Retail/Wholesale,Establishments engaged in selling goods to the public or in bulk to other businesses for resale.
+iretail,Retail,Establishments primarily engaged in selling goods to the public.
+i656000301,Etailing,"The selling of goods and services on B2C and C2C websites, as well as through social networking sites and applications. Includes online reservation services for leisure activities not related to tourism."
+i656,Mixed Retailing,Stores retailing a variety of goods from fixed point-of-sale locations.
+i657,Non-store Retailing,"Retailing merchandise without a fixed point of sale. Vending machine operators, home delivery sales, door-to-door sales, party plan sales and sales through portable stalls."
+i654,Specialty Retailing,Retail establishments that specialize in a particular type of merchandise.
+i641,Food Retailing,Retailing food products.
+i6412,Specialty Food Retailing,"Establishments primarily engaged in retailing specialized lines of food. Butchers, retail bakeries, fruit and vegetable retailers (greengrocers), etc."
+i648,Household Goods Retailing,"Retailing household appliances, consumer electronics, home furnishings, home building and home improvement materials."
+i6483,Decorating/DIY/Hardware Retailing,"Home improvement centers retailing home repair and improvement materials and supplies, such as lumber, plumbing goods, electrical goods, tools, paint, wallpaper and garden equipment/products."
+i6481,Furniture/Home Furnishings Retailing,"Retailing new furniture and home furnishings merchandise. Includes all bedroom, kitchen, lounge and dining furniture. Tables, chairs, sofas, beds, house wares."
+i651,Motor Vehicle Dealing,"Retailing new or used cars, light commercial vehicles and motorcycles."
+i61,Wholesalers,Establishments that sell goods in bulk to other businesses for resale. Includes companies that arrange for the importation and distribution of the goods they sell.
+itech,Technology,"Equipment, devices, networks and programs used or developed as a result of scientific or technical knowledge. Includes electronics, information technology, computers, telecommunications equipment and the internet."
+i3302022,Artificial Intelligence Technologies,Artificial intelligence (AI) and machine learning technologies which enable machines/computers to simulate human intelligence processes.
+iphmetrix,Biometrics Technology,"Technology used in biometrics identification and verification. It involves measuring, collecting and recording a person's physical or behavioral characteristics or traits for comparison and authentication purposes. Includes emotion recognition."
+i3302,Computers/Consumer Electronics,"The manufacture of computers and consumer electronics. Includes computer hardware, software, semiconductors and networking equipment."
+icomp,Computing,"The manufacture of computer hardware, software and networking equipment."
+icph,Computer Hardware,"Manufacturing of computers and any hardware component used in or with a computer, including circuitry, motherboards, hard disks, CPUs, graphics cards, sound cards, monitors and printers."
+icper,Computer Peripherals,"Manufacturing of external devices that are connected to, and transfer data to or from a computer. For external storage devices, use in conjunction with ""Computer Storage Devices"" (i3302019) or its child code ""Memory Chips"" (imemoc)."
+i3302011,Portable Computers,Portable computers. Includes laptops and tablets.
+i330202,Software,"Design, development and supporting of prepackaged or custom software. Publishing and reproduction of software for general public."
+i3302021,Applications Software,"Software designed to perform a specific function. Examples of applications include word processing, spreadsheets, database programs, browsers, development tools, image editing programs, communication programs and compliance software."
+icmsw,Communications Software,"Application programs, operating system components, and probably firmware, forming part of a communication system."
+ientrps,Enterprise Management Software,"Enterprise-level software applications designed to improve business productivity/efficiency within an organization in areas such as customer relationship management, knowledge management, supply chain management and resource planning."
+ielec,Consumer Electronics,"Electronic equipment intended for everyday consumer use in offices, households or by individuals."
+i3454,Personal Electronics,Portable or wearable electronic devices intended for personal use.
+ihandaps,Mobile Devices,"Manufacturing of mobile computing equipment such as smartphones, tablet computers or eBook readers."
+i3303,Networking,"Data communications equipment and networking components. Covers public, private and home networks."
+ibrdbi,Broadband Equipment,"Equipment and components that make wireline, fiber optic, radio-based or satellite networks operative. Does not include wires/cables."
+iwrlssl,Wireless Area Network Technology,"Technologies, standards and protocols used in wireless area network environments."
+iint,Online Service Providers,The provision of services via the web or mobile applications or the provision of online IT solutions such as web hosting or operation of web search portals.
+iecom,E-commerce,Selling goods or services online or via mobile applications. Includes establishments that provide platforms and support for such activities. Excludes establishments engaged exclusively in the development of such websites or applications.
+itnsv,Sharing/On-demand Economy Services,"Establishments which through digital platforms enable peer-to-peer sharing, providing or exchanging services or underused assets as well as on-demand instant ordering and delivery services."
+i7902,Telecommunication Services,"Operating, maintaining or providing access to facilities for the transmission of voice, data, text and video between network termination points and telecommunications reselling."
+i79022,Wireless Telecommunications Services,"Operating, maintaining and providing access to primarily wireless telecommunication networks."
+itsp,Transportation/Logistics,"Passenger and freight transportation via road, rail, water and air. Management of the flow of goods and materials between the point of origin and their destination."
+iairtr,Air Transport,"Air freight transportation and air passenger transport, airports and airline support services."
+i75,Airlines,"Provision of passenger transportation and freight services using aircraft, such as airplanes or helicopters."
+i7502,Air Freight,Air transportation of cargo. Includes airmail carriers.
+i7501,Passenger Airlines,Air transportation of passengers. Includes commuter and helicopter carriers (except scenic and sightseeing).
+i764,Airports,"Operating and maintaining airports and flying fields; includes related support activities such as air traffic control, aircraft maintenance and baggage/cargo handling."
+icargo,Freight Transport/Logistics,Providing freight and cargo transportation and transport logistics.
+irailtr,Land Transport,Passenger and freight transportation via road or rail.
+i71,Rail Transport,"Railway operators (except street railroads, commuter rail, urban rapid transit and scenic and sightseeing trains). Includes freight and passenger services. Track maintenance also included."
+iship,Water Transport/Shipping,Marine and inland water transportation and shipping.
+i74,Marine Transport,Providing deep sea transportation of passengers and/or goods (cargo/freight).
+iutil,Utilities,"The generation, transmission or distribution of electricity, water or gas."
+i17,Water Utilities,"Operating water treatment plants and/or operating water supply systems. The water supply system may include pumping stations, aqueducts and/or distribution mains. The water may be used for drinking, irrigation or other uses."

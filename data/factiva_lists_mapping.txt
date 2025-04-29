@@ -1,0 +1,3 @@
+list_name, list_id
+test_industry_codes, 2ce88edb-3f5e-43c5-bf4b-48eb22624ff1
+region_codes, 7a37a1bd-231c-4e54-b95e-dc499df2f18b
