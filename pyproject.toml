@@ -4,4 +4,9 @@ version = "0.0.1"
 description = "Initial research on early carve-out signals detection"
 readme = "README.md"
 dependencies = [
+    "llm-utils==0.0.1",
 ]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
