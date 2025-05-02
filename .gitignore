@@ -1,3 +1,8 @@
 .env
 venv/
 src/factiva/logs/
+src/factiva/partial_outputs*/
+demo/
+extractions/
+*.egg-info
+outputs/
