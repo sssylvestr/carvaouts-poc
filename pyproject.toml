@@ -5,6 +5,7 @@ description = "Initial research on early carve-out signals detection"
 readme = "README.md"
 dependencies = [
     "llm-utils==0.0.1",
+    "factiva-news==0.2.5",
 ]
 
 [build-system]
