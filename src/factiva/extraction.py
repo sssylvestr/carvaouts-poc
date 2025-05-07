@@ -368,6 +368,7 @@ def create_explain(query_body: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     response = requests.post(url, headers=headers, data=json.dumps(query_body))
     return check_response(response)
 
+
 def check_explain_status(job_id: str) -> Optional[Dict[str, Any]]:
     """
     Check the status of an explain job.
@@ -381,6 +382,7 @@ def check_explain_status(job_id: str) -> Optional[Dict[str, Any]]:
     url = f"{base_url}/extractions/documents/{job_id}/_explain"
     response = requests.get(url, headers=headers)
     return check_response(response)
+
 
 def wait_for_explain_completion(job_id: str, max_retries: int = 100, sleep_time: int = 10) -> Optional[Dict[str, Any]]:
     """
@@ -398,21 +400,24 @@ def wait_for_explain_completion(job_id: str, max_retries: int = 100, sleep_time:
         status = check_explain_status(job_id)
         if not status:
             return None
-            
-        current_state = status['data']['attributes']['current_state']
+
+        current_state = status["data"]["attributes"]["current_state"]
         logger.info(f"Current state: {current_state}")
-        
+
         if current_state == "JOB_STATE_DONE":
             return status
-        
+
         if i < max_retries - 1:
             logger.info(f"Waiting {sleep_time} seconds...")
             sleep(sleep_time)
-    
+
     logger.warning("Max retries reached. Job might still be running.")
     return None
 
-def run_explain(input_query: Dict[str, Any], num_samples: int = 5) -> Tuple[Optional[Dict[str, Any]], Optional[Dict[str, Any]]]:
+
+def run_explain(
+    input_query: Dict[str, Any], num_samples: int = 5
+) -> Tuple[Optional[Dict[str, Any]], Optional[Dict[str, Any]]]:
     """
     Run full explain workflow: create job, wait for completion, get samples.
 
@@ -427,23 +432,24 @@ def run_explain(input_query: Dict[str, Any], num_samples: int = 5) -> Tuple[Opti
 
     if explain_result:
         logger.info("\nExplain job created:")
-        job_id = explain_result['data']['id']
+        job_id = explain_result["data"]["id"]
         logger.info(f"Job ID: {job_id}")
-        
+
         final_status = wait_for_explain_completion(job_id)
 
         logger.info(f"\nGetting samples for job ID: {job_id}")
-        if final_status and 'counts' in final_status['data']['attributes']:
-            count = final_status['data']['attributes']['counts']
+        if final_status and "counts" in final_status["data"]["attributes"]:
+            count = final_status["data"]["attributes"]["counts"]
             logger.info(f"\nNumber of documents matching the query: {count}")
-            
+
             samples_url = f"{base_url}/extractions/samples/{job_id}?num_samples={num_samples}"
             samples_response = requests.get(samples_url, headers=headers)
             samples = samples_response.json()
-            
+
             return final_status, samples
-    
+
     return None, None
+
 
 def run_extraction_workflow(query_body: Dict[str, Any]) -> str:
     """
@@ -465,28 +471,30 @@ def run_extraction_workflow(query_body: Dict[str, Any]) -> str:
     logger.info(f"Extraction {job_id} complete.")
     return job_id
 
+
 def read_avro_file(path: str) -> Generator[Dict[str, Any], None, None]:
     """
     Yield each record (as a dict) from an Avro file.
-    
+
     Args:
         path: Path to the Avro file
-    
+
     Yields:
         Each record as a dictionary
     """
-    with open(path, 'rb') as fo:
+    with open(path, "rb") as fo:
         avro_reader = reader(fo)
         for record in avro_reader:
             yield record
 
+
 def records_to_df(records: List[Dict[str, Any]]) -> pd.DataFrame:
     """
     Convert a list of records to a pandas DataFrame.
-    
+
     Args:
         records: List of record dictionaries
-    
+
     Returns:
         DataFrame containing all records
     """
