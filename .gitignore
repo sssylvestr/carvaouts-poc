@@ -6,3 +6,4 @@ demo/
 extractions/
 *.egg-info
 outputs/
+*logs/
