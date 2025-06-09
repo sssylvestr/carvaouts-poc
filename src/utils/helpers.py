@@ -1,12 +1,9 @@
-"""
-Utility helper functions for the carveouts detection project.
-"""
-
 import os
 import logging
 import pandas as pd
 from pathlib import Path
-from typing import Dict, List, Any, Optional, TypeVar, Union, Callable
+from typing import List, Optional, TypeVar, Union, Callable
+from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
@@ -217,3 +214,83 @@ def create_timestamped_filename(base_path: Union[str, Path], suffix: str = "") -
     new_filename = f"{stem}_{timestamp}{suffix}{extension}"
 
     return path_obj.parent / new_filename
+
+
+def read_dataset(dir_: str, batch_rows: int = 250_000, string_cols=None) -> pd.DataFrame:
+    """
+    Stream an entire partitioned Parquet dataset into a pandas DataFrame,
+    keeping Arrow dtypes to stay memory-efficient except for specified string columns.
+
+    Parameters:
+    -----------
+    dir_ : str
+        Path to parquet file or directory
+    batch_rows : int
+        Number of rows to read in each batch
+    string_cols : list or None
+        Columns to load as Python strings instead of Arrow strings
+    """
+    import pyarrow.dataset as ds
+    import pyarrow as pa
+
+    # Default to segments if no string_cols provided
+    if string_cols is None:
+        string_cols = ["segments"]
+    elif isinstance(string_cols, str):
+        string_cols = [string_cols]
+
+    # First, read the schema to get column names
+    dataset = ds.dataset(dir_, format="parquet")
+    schema = dataset.schema
+    column_names = schema.names
+
+    # Identify which columns should be converted to Python strings
+    convert_to_str = [name for name in column_names if name in string_cols]
+
+    batches = []
+
+    # Create a custom type mapper function that checks column name
+    def custom_types_mapper(pa_type, pa_field_name):
+        if pa.types.is_string(pa_type) and pa_field_name in convert_to_str:
+            return str
+        return pd.ArrowDtype(pa_type)
+
+    scanner = dataset.scanner(batch_size=batch_rows, use_threads=True)
+
+    for rb in scanner.to_batches():
+        # Process each batch and apply the custom type mapping
+        df_batch = rb.to_pandas(
+            types_mapper=lambda pa_type, pa_field_name=None: custom_types_mapper(pa_type, pa_field_name)
+        )
+        batches.append(df_batch)
+
+    if not batches:
+        # Return empty DataFrame with schema if no data
+        return pd.DataFrame()
+
+    return pd.concat(batches, ignore_index=True, copy=False)
+
+
+def write_dataset(out_dir: str, df: pd.DataFrame) -> None: #TODO: optimize data types; reduce batch_size according to your RAM
+    import gc, os
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+
+    pa.set_cpu_count(8)
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
+    batch = 100_000  # rows per Arrow RecordBatch
+
+    for start in tqdm(range(0, len(df), batch)):
+        tbl = pa.Table.from_pandas(df.iloc[start : start + batch], preserve_index=False)
+        pq.write_to_dataset(
+            tbl,
+            root_path=out_dir,
+            partition_cols=["year", "month"],
+            compression="zstd",
+            existing_data_behavior="overwrite_or_ignore"
+        )
+        del tbl
+        gc.collect()

@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+                {
+            "name": "Debug Carveouts Classification",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.pipelines.async_clf",
+            "args": [
+                "-i",
+                "extractions/dj-synhub-extraction-lkbi9fy6zepu8rcjuxqhjwkbld52wgt0-ouutovygqc/tmp_articles_to_classify.csv",
+                "-o",
+                "extractions/dj-synhub-extraction-lkbi9fy6zepu8rcjuxqhjwkbld52wgt0-ouutovygqc/tmp_clf_results",
+                "--test"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "python": "${command:python.interpreterPath}",
+            "env": {
+                "PYTHONDONTWRITEBYTECODE": "1"
+            },
+        },
+        {
+            "name": "Debug Merging Dedup Results",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "src.pipelines.merge_dedup_results",
+            "args": [
+                "-i",
+                "extractions/dj-synhub-extraction-lkbi9fy6zepu8rcjuxqhjwkbld52wgt0-ouutovygqc/tmp",
+                "-d", 
+                "extractions/dj-synhub-extraction-lkbi9fy6zepu8rcjuxqhjwkbld52wgt0-ouutovygqc/tmp_ssim_deduped.parquet",
+                "-o",
+                "extractions/dj-synhub-extraction-lkbi9fy6zepu8rcjuxqhjwkbld52wgt0-ouutovygqc/tmp_articles_to_classify.csv"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "python": "${command:python.interpreterPath}"
+        }
+    ]
+}

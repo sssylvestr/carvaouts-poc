@@ -1,13 +1,41 @@
 [project]
 name = "carveouts-poc"
-version = "0.0.1"
-description = "Initial research on early carve-out signals detection"
+requires-python = ">=3.12"
+version = "0.0.4"
+description = "Research on early carve-out signals detection; Broaded pipeline to filter company-related news from relevant articles"
 readme = "README.md"
 dependencies = [
-    "llm-utils==0.0.2.1",
+    "llm-utils==0.0.2.3",
+    "beautifulsoup4==4.13.4",
     "factiva-news==0.2.5",
+    "lxml==5.4.0",
+    "nltk==3.9.1",
+    "pandas",
+    "pandarallel==1.6.5",
+    "python-dotenv==1.1.0",
+    "tqdm==4.67.1",
+    "pyarrow==20.0.0",
+    "openpyxl>=3.1.5",
+    "tqdm-joblib>=0.0.4",
+    "datasketch>=1.6.5",
+    "simhash>=2.1.2",
+    "pyahocorasick>=2.1.0",
+    "faiss-cpu>=1.11.0",
+    "aiolimiter>=1.2.1",
+]
+
+[project.optional-dependencies]
+jupyter=[
+    "ipython","ipykernel","ipywidgets","matplotlib==3.10.3", "seaborn==0.13.2"
+]
+ssim = [
+    "sentence-transformers==4.1.0",
 ]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+
+
+# TODO: add optional deps for different parts of the pipeline

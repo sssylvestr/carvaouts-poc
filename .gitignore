@@ -7,3 +7,7 @@ extractions/
 *.egg-info
 outputs/
 *logs/
+*.pyc
+data/parquet_test_dataset/
+venv_/
+.mypy_cache/
