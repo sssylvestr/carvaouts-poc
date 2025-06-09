@@ -62,13 +62,13 @@ Pipeline description:
     ./run_pipeline.sh extractions/job-id/result.csv
 
     # With specific model
-    ./run_pipeline.sh extractions/job-id/result.csv gpt-4-turbo
+    ./run_pipeline.sh extractions/job-id/result.csv gpt-4.1
 
     # Test mode with smaller datasets
     ./run_pipeline.sh extractions/job-id/result.csv --test
 
     # Continue from existing directory
-    ./run_pipeline.sh extractions/job-id/result.csv - processing_20250609_120717
+    ./run_pipeline.sh extractions/job-id/result.csv - processing_20250606_120717
     ```
 
     **Step-by-Step Execution**
