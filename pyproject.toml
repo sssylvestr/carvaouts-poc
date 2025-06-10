@@ -1,7 +1,7 @@
 [project]
 name = "carveouts-poc"
 requires-python = ">=3.12"
-version = "0.0.4"
+version = "0.0.5"
 description = "Research on early carve-out signals detection; Broaded pipeline to filter company-related news from relevant articles"
 readme = "README.md"
 dependencies = [
@@ -38,4 +38,3 @@ build-backend = "setuptools.build_meta"
 
 
 
-# TODO: add optional deps for different parts of the pipeline

@@ -38,7 +38,7 @@ Pipeline description:
 
     ```bash
     uv venv  
-    source .venv/bin/activate
+    source .venv/bin/activate && source .env
     uv sync --extra-index-url $PIP_EXTRA_INDEX_URL #basic installation
     uv sync --extra-index-url $PIP_EXTRA_INDEX_URL --all-extras #extras: semantic similarity; jupyter
     ```
