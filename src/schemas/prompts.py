@@ -145,10 +145,11 @@ Given the provided news article, perform the following:
 1. **Identify** clearly:
     - **Target Company:** The company potentially divesting a subsidiary.
     - **Financial Group:** Ultimate parent group of the target company.
-    - **Financial Group HQ:** Two-letter country code (e.g., UK, DE).
+    - **Financial Group HQ:** Two-letter country code (e.g., UK, DE). **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
+    - **Group Sector:** Sector of the financial parent group (e.g., Banking, Insurance, Data, etc.). **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
     - **Potential Disposal Company:** Subsidiary/unit explicitly or implicitly mentioned as potentially disposable.
-    - **Potential Disposal Country:** Two-letter EEA country code of the disposal company.
-    - **Disposal NC Sector:** Select exactly from "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech", "Other".
+    - **Potential Disposal Country:** Two-letter EEA country code of the disposal company. **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
+    - **Disposal NC Sector:** Select exactly from "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech", "Other". **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
 
 2. **Assess** clearly:
     - **Relevant:** True if the potential disposal is within the EEA region, else False.
@@ -157,6 +158,15 @@ Given the provided news article, perform the following:
 3. **Provide** succinct reasoning:
     - **Rationale:** 1–2 sentences explicitly summarizing why the carve-out may occur (e.g., divestment of non-core assets, strategic refocusing).
     - **Article Quote:** Provide a direct, supportive quote from the article.
+
+### CRITICAL INSTRUCTION FOR SPECIFIC FIELDS:
+For the following fields, you must output "Unknown" unless the information is COMPLETELY OBVIOUS and you are 100% certain:
+- **Financial Group HQ** (headquarters country code)
+- **Group Sector** (parent group's business sector)
+- **Potential Disposal Country** (disposal company's location)
+- **Disposal NC Sector** (Nordic Capital sector classification)
+
+Do NOT guess, infer, or make assumptions for these fields. If there is ANY uncertainty, output "Unknown".
 
 ### Carve-out Identification Guidelines:
 
@@ -178,7 +188,7 @@ Given the provided news article, perform the following:
 Business request: {business_request}
 
 ### Response Format:
-If information is unclear or missing, explicitly state "Information Not Available" for that field.
+If information is unclear or missing, explicitly state "Information Not Available" for that field. For the four critical fields above (Financial Group HQ, Group Sector, Potential Disposal Country, Disposal NC Sector), output "Unknown" if not completely obvious and certain.
 
 Article and current assessment:
 
