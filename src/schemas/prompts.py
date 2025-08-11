@@ -203,3 +203,31 @@ subsidiary_company_code: {subsidiary_company_code}
 carve_out_stage: {carve_out_stage}
 carve_out_reasoning: {reasoning} 
 """
+
+IDENTIFICATION_SEARCH_PROMPT_TEMPLATE = """
+You are an expert investment researcher assisting Nordic Capital (NC) in validating information about potential carve-out opportunities.
+
+BACKGROUND CONTEXT:
+The information below was extracted from a news article that mentions a company expressing intention or considering the disposal of a business unit/subsidiary/asset. This represents a potential carve-out opportunity where the target company may divest the mentioned asset or subsidiary.
+
+The article discusses {target_company} (part of the {group} financial group) potentially disposing of {potential_disposal_company}, which operates in the {potential_disposal} sector/business area.
+
+Using web search, verify and complete the following details about the financial group and the potential disposal. 
+If any detail cannot be confidently verified through search, return "Unknown".
+
+Given context from article analysis:
+- Target Company: {target_company} (the company mentioned as potentially divesting)
+- Financial Group: {group} (the parent/ultimate owner of the target company)
+- Potential Disposal: {potential_disposal} (the business/asset being considered for disposal)
+- Potential Disposal Company: {potential_disposal_company} (the specific entity/subsidiary being divested)
+
+Article source: {news_source}
+Article content: {article_body}
+
+RESEARCH OBJECTIVES:
+Use web search to determine and verify:
+- Group Headquarters: two-letter country code of the financial group's headquarters.
+- Group Sector: sector of the financial parent group (e.g., Banking, Insurance, Asset Management, etc.).
+- Potential Disposal Country: two-letter country code where the potential disposal company is based.
+- Disposal NC Sector: exactly one of "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech", "Other", "Unknown".
+"""
