@@ -154,7 +154,8 @@ if __name__ == "__main__":
           "potential_disposal": lambda x: set_concat(x, 4),  # Concatenate unique values, limit to 4
           "potential_disposal_company": lambda x: set_concat(x, 4),  # Concatenate unique values, limit to 4
           "potential_disposal_country": lambda x: set_concat(x, 4),  # Concatenate unique values, limit to 4
-          "disposal_nc_sector": most_common,  # Most common disposal sector
+          "disposal_nc_sector": lambda x: set_concat(x, 4),  # Concatenate unique sectors, limit to 4
+          "potential_disposal_vertical": lambda x: set_concat(x, 4),  # Concatenate unique verticals, limit to 4
 
           "rationale": lambda x: set_concat(x, 4),  # Concatenate unique rationales, limit to 4
           "date": "min",
