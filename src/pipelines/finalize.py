@@ -84,14 +84,19 @@ if __name__ == "__main__":
          final_path=str(Path(args.output_dir) / "summary_results.csv"),
          cols_mapping=summary_cols_mapping,
          cols2append_mapping={
-             'date': 'date',
-             'source_name': 'source_name',
-             'article_fragment': 'article_fragment',
+             "source_name": "source_name",
+             "article_fragment": "article_fragment",
+             "date": "date",
          },
          max_retries=4,
          initial_delay=3.0,
          partial_every=2800,
      )
+
+     required_fields = {"source_name", "article_fragment", "date"}
+     if not required_fields.issubset(df_results.columns):
+         missing = required_fields - set(df_results.columns)
+         raise ValueError(f"Missing required fields in df_results: {', '.join(missing)}")
 
      search_chain = factory.build_search_runnable_with_structured_output(
          pydantic_model=SearchCarveOutIdentificationSummary,
@@ -110,28 +115,28 @@ if __name__ == "__main__":
          "potential_disposal_company": "potential_disposal_company",
      }
 
-    df_search = run_pipeline_sync(
-        df_results,
-        search_chain,
-        partial_dir=args.partial_dir,
-        final_path=str(Path(args.output_dir) / "search_results.csv"),
-        cols_mapping=search_cols_mapping,
-        max_retries=4,
-        initial_delay=3.0,
-        partial_every=2800,
-    )
-    df_results = df_results.drop(
-        columns=["source_name", "article_fragment", "potential_disposal_company"],
-        errors="ignore",
-    )
-    df_results = df_results.merge(df_search, on="index", how="left")
-    df_results = df_results.rename(
-        columns={
-            "financial_group_hq": "group_hq",
-            "group_vertical": "vertical",
-            "potential_disposal_industry": "disposal_nc_sector",
-        }
-    )
+     df_search = run_pipeline_sync(
+         df_results,
+         search_chain,
+         partial_dir=args.partial_dir,
+         final_path=str(Path(args.output_dir) / "search_results.csv"),
+         cols_mapping=search_cols_mapping,
+         max_retries=4,
+         initial_delay=3.0,
+         partial_every=2800,
+     )
+     df_results = df_results.drop(
+         columns=["source_name", "article_fragment", "potential_disposal_company"],
+         errors="ignore",
+     )
+     df_results = df_results.merge(df_search, on="index", how="left")
+     df_results = df_results.rename(
+         columns={
+             "financial_group_hq": "group_hq",
+             "group_vertical": "vertical",
+             "potential_disposal_industry": "disposal_nc_sector",
+         }
+     )
 
      logging.info(f"Extraction completed, merging full results with original data")
 
