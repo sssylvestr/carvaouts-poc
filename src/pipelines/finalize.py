@@ -61,8 +61,8 @@ if __name__ == "__main__":
          
      factory = LLMChainFactory(model_name='o4-mini', provider="openai")
      summary_template = PromptTemplate.from_template(template=IDENTIFICATION_PROMPT_TEMPLATE, partial_variables={'business_request': business_request})
-     runnable = factory.build_search_runnable_with_structured_output(pydantic_model=CarveOutIdentificationSummary)
-     summary_chain = summary_template | runnable
+     summary_chain = factory.runnable_with_pydantic(template=IDENTIFICATION_PROMPT_TEMPLATE, pydantic_model=CarveOutIdentificationSummary, llm=factory.llm)
+
      logging.info("Loaded data and created chain for carve-out identification")     
 
      summary_cols_mapping = {"company_names": "companies", 
