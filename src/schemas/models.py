@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 
@@ -13,16 +13,48 @@ class CarveOutAssessment(BaseModel):
 
 class CarveOutIdentificationSummary(BaseModel):
     target_company: str = Field(description="Name of the company that may consider divesting a subsidiary")
-    group: str = Field(description="Ultimate parent financial group of the target company")
-    group_hq: str = Field(description="Headquarters of the ultimate parent financial group; two-letter country code")
-    vertical: str = Field(description="Sector of the financial group, i.e. Banking, Insurance, Data, etc.")
-    
-    potential_disposal: str = Field(description="Potential subdivision to be disposed of, i.e. UK business, Insurance Arm, IP business, etc - specific parts of the business")
-    potential_disposal_company: str = Field(description="Name of the specific subsidiary or business unit considered for disposal")
-    potential_disposal_country: str = Field(description="EEA country where the potential disposal company is based; two-letter country code")  
-    disposal_nc_sector: Literal["Financial Services", "Technology & Payments", "Healthcare","Services & Industrial Tech", "Other"] = Field(description="The specific NC sector applicable to the disposal company")
 
-    article_quote: str = Field(description="A relevant direct quote from the article supporting the carve-out rationale")    
-    relevant: bool = Field(description="Boolean indicator if the article meets regional criteria for potential disposals within the EEA")
-    interest_score: float = Field(description="Interest level of carve-out opportunity between 0 (low) to 1 (high), based on strategic timing and early-stage indicators")
-    rationale: str = Field(description="Brief rationale (1-2 sentences) for why the carve-out opportunity exists (e.g., strategic refocusing, divestment of non-core assets)")
+    # Optional enrichment fields (populate only if clearly stated in the article or provided in supplementary fields)
+    group: str = Field(
+        description="Ultimate parent financial group of the target company (if explicitly stated)",
+    )
+    group_hq: Optional[str] = Field(
+        default=None,
+        description="Headquarters of the ultimate parent financial group; two-letter country code (if known)",
+    )
+    vertical: Optional[str] = Field(
+        default=None,
+        description="Sector of the financial group, i.e. Banking, Insurance, Data, etc. (if stated)",
+    )
+
+    potential_disposal: str = Field(
+        description="Potential subdivision to be disposed of, i.e. UK business, Insurance Arm, IP business, etc - specific parts of the business (if mentioned)",
+    )
+    potential_disposal_company: str = Field(
+        description="Name of the specific subsidiary or business unit considered for disposal (if mentioned)",
+    )
+    potential_disposal_country: Optional[str] = Field(
+        default=None,
+        description="EEA country where the potential disposal company is based; two-letter country code (if known)",
+    )
+    disposal_nc_sector: Optional[Literal[
+        "Financial Services",
+        "Technology & Payments",
+        "Healthcare",
+        "Services & Industrial Tech",
+        "Other",
+    ]] = Field(
+        default=None,
+        description="The specific NC sector applicable to the disposal company (if determinable from the article)",
+    )
+    disposal_nc_vertical: Optional[str] = Field(
+        default=None,
+        description="The specific NC vertical applicable to the disposal company (if determinable from the article)",
+    )
+
+    relevant: Optional[bool] = Field(
+        default=None,
+        description="Boolean indicator if the article meets regional criteria for potential disposals within the EEA",
+    )
+    interest_score: Literal[1, 2, 3, 4, 5] = Field(description="Interest level of the carve-out opportunity on a 1–5 scale (1=low, 5=high), based on timing and early-stage indicators")
+    rationale: str = Field(description="Brief rationale (1-3 sentences with quotes) for why the carve-out opportunity exists, with included direct quotes from the article")

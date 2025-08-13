@@ -143,20 +143,27 @@ You are an expert investment professional identifying corporate carve-out opport
 
 Given the provided news article, perform the following:
 1. **Identify** clearly:
-    - **Target Company:** The company potentially divesting a subsidiary.
-    - **Financial Group:** Ultimate parent group of the target company.
-    - **Financial Group HQ:** Two-letter country code (e.g., UK, DE).
-    - **Potential Disposal Company:** Subsidiary/unit explicitly or implicitly mentioned as potentially disposable.
-    - **Potential Disposal Country:** Two-letter EEA country code of the disposal company.
-    - **Disposal NC Sector:** Select exactly from "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech", "Other".
+   - **Target Company:** The company potentially divesting a subsidiary.
+   - **Financial Group:** Ultimate parent financial group of the target company (if explicitly stated)
+   - **Financial Group HQ:** Headquarters of the ultimate parent financial group; two-letter country code (if known)
+   - **Financial Group Vertical:** Sector of the financial group, i.e. Banking, Insurance, Data, etc. (if stated)
+   - **Potential Disposal Company:** Name of the specific subsidiary or business unit considered for disposal (if mentioned)
+   - **Potential Disposal Country:** EEA country where the potential disposal company is based; two-letter country code (if known)
+   - **Disposal NC Sector:** The specific NC sector applicable to the disposal company (if determinable from the article)
+   - **Disposal NC Vertical:** The specific NC vertical applicable to the disposal company (if determinable from the article)
 
-2. **Assess** clearly:
-    - **Relevant:** True if the potential disposal is within the EEA region, else False.
-    - **Interest Score:** Rate interest from 0.0 (low) to 1.0 (high), higher if signals are early-stage, strategic reviews, or management changes.
-    
-3. **Provide** succinct reasoning:
-    - **Rationale:** 1–2 sentences explicitly summarizing why the carve-out may occur (e.g., divestment of non-core assets, strategic refocusing).
-    - **Article Quote:** Provide a direct, supportive quote from the article.
+ 2. **Assess** clearly:
+     - **Relevant:** True if the potential disposal is within the EEA region; False if outside the EEA; null if unclear.
+    - **Interest Score:** integer 1–5 computed from two factors only: Stage (1–5) and Signal Quality (1–5). Use anchors:
+       - Stage: 1=completed/past-only; 3="considering options"/"strategic review"; 5=advisers hired/mandate or process launching.
+       - Signal: 1=generic strategy talk; 3=disposal implied (segment/region hinted); 5=named subsidiary/unit with concrete action (e.g., "for sale", advisor/mandate).
+       - Compute: interest_score = round(0.65*Stage + 0.35*Signal); clamp to [1,5]. Do not fold region/scope into this score; they are assessed separately. Keep the rationale focused on evidence from the article and a quote from the article; avoid meta-scoring language (e.g., referencing Stage/Signal or the formula).
+     
+ 3. **Provide** succinct reasoning:
+     - **Rationale:**
+       - If identified as a potential carve-out: write 1–3 sentences grounded in article facts; include at least one short, direct quote from the article itself.
+       - Prefer evidence that supports given Interest Score; avoid rubric restatements. Focus on concrete signals (advisors hired, named unit, announced review) with supporting quotes from the article.
+       - If not a carve-out: write 1 sentence stating why it does not meet the criteria; include an article quote only if it materially supports the conclusion.
 
 ### Carve-out Identification Guidelines:
 
@@ -178,13 +185,14 @@ Given the provided news article, perform the following:
 Business request: {business_request}
 
 ### Response Format:
-If information is unclear or missing, explicitly state "Information Not Available" for that field.
+If information is unclear or missing, explicitly state "Information Not Available" for that field. For the `Relevant` field specifically, use null when unclear.
 
 Article and current assessment:
 
 source: {source_name}
 title: {title}
-date: {date}
+article date: {date}
+current date: {current_date}
 article body: {article_fragment}
 mentioned_companies: {companies}
 mentioned_company_codes: {company_codes}

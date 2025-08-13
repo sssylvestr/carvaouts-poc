@@ -231,6 +231,11 @@ async def process_df_rows(
     # dataframe → list[dict]
     rows: List[Dict[str, Any]] = df.rename(columns=cols_mapping).reset_index().to_dict(orient="records") #type: ignore
 
+    # Inject current date in ISO format for prompt recency/completeness assessments
+    today_iso = datetime.now().strftime("%Y-%m-%d")
+    for row in rows:
+        row["current_date"] = today_iso
+
     logger.debug(f"Processing {len(rows)} rows")
 
     results, failures = [], []
