@@ -12,23 +12,21 @@ class CarveOutAssessment(BaseModel):
 
 
 class CarveOutIdentificationSummary(BaseModel):
-    target_company: str = Field(description="Name of the company that may consider divesting a subsidiary")
-    group: str = Field(description="Ultimate parent financial group of the target company")
-    group_hq: str = Field(description="Headquarters of the ultimate parent financial group; two-letter country code")
-    group_sector: str = Field(description="Sector of the financial group, i.e. Banking, Insurance, Data, etc.")
-    
-    potential_disposal: str = Field(description="Potential subdivision to be disposed of, i.e. UK business, Insurance Arm, IP business, etc - specific parts of the business")
-    potential_disposal_company: str = Field(description="Name of the specific subsidiary or business unit considered for disposal")
-    potential_disposal_country: str = Field(description="EEA country where the potential disposal company is based; two-letter country code")  
-    disposal_nc_sector: Literal["Financial Services", "Technology & Payments", "Healthcare","Services & Industrial Tech", "Other"] = Field(description="The specific sector applicable to the disposal company")
+    target_company: str = Field(description="Name of the company potentially divesting a subsidiary")
+    financial_group: str = Field(description="Ultimate parent group of the target company")
 
-    article_quote: str = Field(description="A relevant direct quote from the article supporting the carve-out rationale")    
-    relevant: bool = Field(description="Boolean indicator if the article meets regional criteria for potential disposals within the EEA")
-    interest_score: float = Field(description="Interest level of carve-out opportunity between 0 (low) to 1 (high), based on strategic timing and early-stage indicators")
-    rationale: str = Field(description="Brief rationale (1-2 sentences) for why the carve-out opportunity exists (e.g., strategic refocusing, divestment of non-core assets)")
+    potential_disposal: str = Field(description="Potential subdivision to be disposed of (e.g., UK business, Insurance Arm, IP business, etc.) - specific parts of the business being considered for divestiture")
+    potential_disposal_company: str = Field(description="Name of the specific subsidiary or business unit considered for disposal")
+
+    relevant: bool = Field(description="True if the potential disposal is within the EEA region, else False")
+    interest_score: float = Field(description="Rate interest from 0.0 (low) to 1.0 (high), higher if signals are early-stage, strategic reviews, or management changes")
+    rationale: str = Field(description="1–2 sentences explicitly summarizing why the carve-out may occur (e.g., divestment of non-core assets, strategic refocusing)")
+    article_quote: str = Field(description="A direct, supportive quote from the article")
 
 class SearchCarveOutIdentificationSummary(BaseModel):
-    group_hq: str = Field(description="Headquarters of the ultimate parent financial group; two-letter country code")
-    group_sector: str = Field(description="Sector of the financial parent group, i.e. Banking, Insurance, Data, etc.")
-    potential_disposal_country: str = Field(description="EEA country where the potential disposal company is based; two-letter country code")  
-    disposal_nc_sector: Literal["Financial Services", "Technology & Payments", "Healthcare","Services & Industrial Tech", "Other", "Unknown"] = Field(description="The specific NC sector applicable to the disposal company")
+    financial_group_hq: str = Field(description="Headquarters of the ultimate parent financial group; two-letter country code")
+    group_industry: str = Field(description="Sector of the financial parent group (e.g. 'Financial Services', 'Technology & Payments', 'Healthcare', 'Services & Industrial Tech')")
+    group_vertical: str = Field(description="Specific subsector within the chosen industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)")
+    potential_disposal_country: str = Field(description="Two-letter EEA country code of the disposal company")  
+    potential_disposal_industry: str = Field(description="Sector of the disposal company (e.g. 'Financial Services', 'Technology & Payments', 'Healthcare', 'Services & Industrial Tech')")
+    potential_disposal_vertical: str = Field(description="Specific subsector within the disposal company's industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)")

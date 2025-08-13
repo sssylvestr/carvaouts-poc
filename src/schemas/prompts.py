@@ -145,11 +145,8 @@ Given the provided news article, perform the following:
 1. **Identify** clearly:
     - **Target Company:** The company potentially divesting a subsidiary.
     - **Financial Group:** Ultimate parent group of the target company.
-    - **Financial Group HQ:** Two-letter country code (e.g., UK, DE). **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
-    - **Group Sector:** Sector of the financial parent group (e.g., Banking, Insurance, Data, etc.). **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
-    - **Potential Disposal Company:** Subsidiary/unit explicitly or implicitly mentioned as potentially disposable.
-    - **Potential Disposal Country:** Two-letter EEA country code of the disposal company. **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
-    - **Disposal NC Sector:** Select exactly from "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech", "Other". **CRITICAL: Output "Unknown" if this information is not OBVIOUS and you are not 100% certain.**
+    - **Potential Disposal:** Potential subdivision to be disposed of (e.g., UK business, Insurance Arm, IP business, etc.) - specific parts of the business being considered for divestiture.
+    - **Potential Disposal Company:** Name of the specific subsidiary or business unit considered for disposal. **CRITICAL: Output "Unknown" if Disposal company is not OBVIOUS from the text of the article.**
 
 2. **Assess** clearly:
     - **Relevant:** True if the potential disposal is within the EEA region, else False.
@@ -158,15 +155,6 @@ Given the provided news article, perform the following:
 3. **Provide** succinct reasoning:
     - **Rationale:** 1–2 sentences explicitly summarizing why the carve-out may occur (e.g., divestment of non-core assets, strategic refocusing).
     - **Article Quote:** Provide a direct, supportive quote from the article.
-
-### CRITICAL INSTRUCTION FOR SPECIFIC FIELDS:
-For the following fields, you must output "Unknown" unless the information is COMPLETELY OBVIOUS and you are 100% certain:
-- **Financial Group HQ** (headquarters country code)
-- **Group Sector** (parent group's business sector)
-- **Potential Disposal Country** (disposal company's location)
-- **Disposal NC Sector** (Nordic Capital sector classification)
-
-Do NOT guess, infer, or make assumptions for these fields. If there is ANY uncertainty, output "Unknown".
 
 ### Carve-out Identification Guidelines:
 
@@ -183,12 +171,8 @@ Do NOT guess, infer, or make assumptions for these fields. If there is ANY uncer
     - General M&A or opinion articles without concrete signals.
     
 - **Prioritize future carve-out opportunities.**
-- **Dismiss articles with past transactions. Now is 2025, news with deals from 2023 are outdated.**
 
 Business request: {business_request}
-
-### Response Format:
-If information is unclear or missing, explicitly state "Information Not Available" for that field. For the four critical fields above (Financial Group HQ, Group Sector, Potential Disposal Country, Disposal NC Sector), output "Unknown" if not completely obvious and certain.
 
 Article and current assessment:
 
@@ -204,30 +188,67 @@ carve_out_stage: {carve_out_stage}
 carve_out_reasoning: {reasoning} 
 """
 
+
 IDENTIFICATION_SEARCH_PROMPT_TEMPLATE = """
-You are an expert investment researcher assisting Nordic Capital (NC) in validating information about potential carve-out opportunities.
+You are an expert investment researcher assisting Nordic Capital (NC) in validating and enriching information about potential carve-out opportunities.
 
 BACKGROUND CONTEXT:
 The information below was extracted from a news article that mentions a company expressing intention or considering the disposal of a business unit/subsidiary/asset. This represents a potential carve-out opportunity where the target company may divest the mentioned asset or subsidiary.
 
-The article discusses {target_company} (part of the {group} financial group) potentially disposing of {potential_disposal_company}, which operates in the {potential_disposal} sector/business area.
+The article discusses {target_company} (part of the {financial_group} financial group) potentially disposing of {potential_disposal_company}, which operates in the {potential_disposal} sector/business area.
 
-Using web search, verify and complete the following details about the financial group and the potential disposal. 
-If any detail cannot be confidently verified through search, return "Unknown".
+INFORMATION SOURCES AVAILABLE TO YOU:
+1. **WEB SEARCH**: Use web search to find authoritative information about companies, their headquarters, industry classifications, and business activities
+2. **ARTICLE CONTENT**: Analyze the provided article text for explicit mentions of locations, business types, company descriptions, and operational details
+3. **COMPANY CONTEXT**: Use the provided company names and business descriptions as starting points for your research
+
+Your task is to combine information from ALL available sources to provide the most accurate and complete picture.
 
 Given context from article analysis:
 - Target Company: {target_company} (the company mentioned as potentially divesting)
-- Financial Group: {group} (the parent/ultimate owner of the target company)
+- Financial Group: {financial_group} (the parent/ultimate owner of the target company)
 - Potential Disposal: {potential_disposal} (the business/asset being considered for disposal)
 - Potential Disposal Company: {potential_disposal_company} (the specific entity/subsidiary being divested)
 
 Article source: {news_source}
 Article content: {article_body}
 
+RESEARCH METHODOLOGY:
+1. **Start with the article**: Look for explicit mentions of headquarters, locations, business types, and industry classifications
+2. **Supplement with web search**: Use web search to verify article information and fill in missing details about:
+   - Company headquarters and locations
+   - Parent company industry classifications
+   - Business unit industry categories
+   - Subsidiary operational focus areas
+3. **Cross-validate**: Ensure information from web search is consistent with article context
+4. **Prioritize authoritative sources**: Use official company websites, regulatory filings, and reputable business databases
+
 RESEARCH OBJECTIVES:
-Use web search to determine and verify:
-- Group Headquarters: two-letter country code of the financial group's headquarters.
-- Group Sector: sector of the financial parent group (e.g., Banking, Insurance, Asset Management, etc.).
-- Potential Disposal Country: two-letter country code where the potential disposal company is based.
-- Disposal NC Sector: exactly one of "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech", "Other", "Unknown".
+Using BOTH web search AND article analysis, determine:
+
+- **Financial Group HQ**: Two-letter country code of the financial group's headquarters
+  (Check: article mentions, company websites, business registries)
+
+- **Group Industry**: Sector of the financial parent group (e.g. "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech")
+  (Check: article descriptions, company profiles, industry classifications)
+
+- **Group Vertical**: Specific subsector within the chosen industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)
+  (Check: detailed business descriptions, company activities, operational focus)
+
+- **Potential Disposal Country**: Two-letter country code where the potential disposal company is based
+  (Check: article mentions, subsidiary locations, operational geographies)
+
+- **Potential Disposal Industry**: Sector of the disposal company (e.g. "Financial Services", "Technology & Payments", "Healthcare", "Services & Industrial Tech")
+  (Check: article business descriptions, subsidiary classifications, operational activities)
+
+- **Potential Disposal Vertical**: Specific subsector within the disposal company's industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)
+  (Check: detailed operational descriptions, specific business activities, service offerings)
+
+QUALITY STANDARDS:
+- **Use multiple sources**: Don't rely on a single source; cross-reference information
+- **Prefer explicit mentions**: Direct statements in articles or official sources are more reliable than inferences
+- **Be conservative**: If information conflicts between sources or is ambiguous, return "Unknown"
+- **Document your reasoning**: Base your conclusions on verifiable facts from your sources
+
+IMPORTANT: Only provide information you can confidently verify through your research combining web search results AND article analysis. If uncertain about any field after checking all available sources, return "Unknown" for that specific item.
 """
