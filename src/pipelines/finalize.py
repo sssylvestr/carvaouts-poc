@@ -6,8 +6,15 @@ from langchain_core.prompts import PromptTemplate
 
 from llm_utils.factory import LLMChainFactory
 from src.df_llm_processor import run_pipeline_sync
-from src.schemas.models import CarveOutIdentificationSummary
-from src.schemas.prompts import IDENTIFICATION_PROMPT_TEMPLATE, business_request
+from src.schemas.models import (
+    CarveOutIdentificationSummary,
+    SearchCarveOutIdentificationSummary,
+)
+from src.schemas.prompts import (
+    IDENTIFICATION_PROMPT_TEMPLATE,
+    IDENTIFICATION_SEARCH_PROMPT_TEMPLATE,
+    business_request,
+)
 from src.utils.excel_export import export_summary_to_excel
 
 def most_common(series):
@@ -58,7 +65,7 @@ if __name__ == "__main__":
      if args.test:
          logging.info("Running in test mode, limiting to 200 rows")
          df = df.head(200)
-         
+
      factory = LLMChainFactory(model_name='o4-mini', provider="openai")
      summary_template = PromptTemplate.from_template(template=IDENTIFICATION_PROMPT_TEMPLATE, partial_variables={'business_request': business_request})
      summary_chain = factory.runnable_with_pydantic(template=IDENTIFICATION_PROMPT_TEMPLATE, pydantic_model=CarveOutIdentificationSummary, llm=factory.llm)
@@ -70,18 +77,66 @@ if __name__ == "__main__":
                             "modification_date": "date",
                              }
      
-     df_results = run_pipeline_sync(df, 
-          summary_chain, 
-          partial_dir=args.partial_dir, 
-          final_path=str(Path(args.output_dir)/"summary_results.csv"),
-          cols_mapping=summary_cols_mapping, 
-          cols2append_mapping={'date': 'date'}, 
-          max_retries=4, 
-          initial_delay=3.0, 
-          partial_every=2800)
-     
+     df_results = run_pipeline_sync(
+         df,
+         summary_chain,
+         partial_dir=args.partial_dir,
+         final_path=str(Path(args.output_dir) / "summary_results.csv"),
+         cols_mapping=summary_cols_mapping,
+         cols2append_mapping={
+             'date': 'date',
+             'source_name': 'source_name',
+             'article_fragment': 'article_fragment',
+         },
+         max_retries=4,
+         initial_delay=3.0,
+         partial_every=2800,
+     )
+
+     search_chain = factory.build_search_runnable_with_structured_output(
+         pydantic_model=SearchCarveOutIdentificationSummary,
+         model="gpt-5",
+     )
+     search_template = PromptTemplate.from_template(
+         template=IDENTIFICATION_SEARCH_PROMPT_TEMPLATE
+     )
+     search_chain = search_template | search_chain
+
+     search_cols_mapping = {
+         "source_name": "news_source",
+         "article_fragment": "article_body",
+         "target_company": "target_company",
+         "potential_disposal": "potential_disposal",
+         "potential_disposal_company": "potential_disposal_company",
+     }
+
+     df_search = run_pipeline_sync(
+         df_results,
+         search_chain,
+         partial_dir=args.partial_dir,
+         final_path=str(Path(args.output_dir) / "search_results.csv"),
+         cols_mapping=search_cols_mapping,
+         max_retries=4,
+         initial_delay=3.0,
+         partial_every=2800,
+     )
+
+     df_search = df_search.rename(
+         columns={
+             "financial_group_hq": "group_hq",
+             "group_vertical": "vertical",
+             "potential_disposal_industry": "disposal_nc_sector",
+         }
+     )
+
+     df_results = df_results.drop(
+         columns=["source_name", "article_fragment", "potential_disposal_company"],
+         errors="ignore",
+     )
+     df_results = df_results.merge(df_search, on="index", how="left")
+
      logging.info(f"Extraction completed, merging full results with original data")
-     
+
      df_results = df_results[df_results.relevant]
      df_results = df_results.set_index('index').sort_index()
           
@@ -113,8 +168,10 @@ if __name__ == "__main__":
 
      grouped_summary['interest_score'] = grouped_summary['interest_score'].round(2)
      grouped_summary['date'] = pd.to_datetime(grouped_summary['date']).dt.strftime('%Y-%m-%d')
-     grouped_summary = grouped_summary.loc[:,grouped_summary.columns!='reasoning'].reset_index()
-     
-     export_path = export_summary_to_excel(grouped_summary,excel_path=Path(args.output_dir) / "carveouts_summary.xlsx") # type: ignore
+     grouped_summary = grouped_summary.loc[:, grouped_summary.columns != 'reasoning'].reset_index()
+
+     export_path = export_summary_to_excel(
+         grouped_summary, excel_path=Path(args.output_dir) / "carveouts_summary.xlsx"
+     )  # type: ignore
      logging.info(f"Exported summary to {export_path}")
      logging.info("Pipeline completed successfully!")
