@@ -201,7 +201,7 @@ langsmith==0.3.45
     #   langchain
     #   langchain-community
     #   langchain-core
-llm-utils==0.0.2.3
+llm-utils==0.0.2.7
     # via carveouts-poc (pyproject.toml)
 lxml==5.4.0
     # via carveouts-poc (pyproject.toml)

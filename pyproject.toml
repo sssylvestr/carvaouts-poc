@@ -5,7 +5,7 @@ version = "0.0.5"
 description = "Research on early carve-out signals detection; Broaded pipeline to filter company-related news from relevant articles"
 readme = "README.md"
 dependencies = [
-    "llm-utils==0.0.2.3",
+    "llm-utils==0.0.2.7",
     "beautifulsoup4==4.13.4",
     "factiva-news==0.2.5",
     "lxml==5.4.0",
