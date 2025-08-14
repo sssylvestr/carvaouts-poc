@@ -33,6 +33,10 @@ class SearchCarveOutIdentificationSummary(BaseModel):
     group_industry: str = Field(description="Sector of the financial parent group (e.g. 'Financial Services', 'Technology & Payments', 'Healthcare', 'Services & Industrial Tech')")
     group_vertical: str = Field(description="Specific subsector within the chosen industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)")
     potential_disposal_company: Optional[str] = Field(description="Name of the specific subsidiary or business unit considered for disposal (if mentioned)")
+    relevant: Optional[bool] = Field(
+        default=None,
+        description="True if the potential disposal is within the EEA; False if outside the EEA; null if unclear.",
+    )
     potential_disposal_country: Optional[str] = Field(description="Two-letter EEA country code of the disposal company")  
     potential_disposal_industry: str = Field(description="Sector of the disposal company (e.g. 'Financial Services', 'Technology & Payments', 'Healthcare', 'Services & Industrial Tech')")
     potential_disposal_vertical: str = Field(description="Specific subsector within the disposal company's industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)")

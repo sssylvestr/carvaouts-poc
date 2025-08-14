@@ -1,6 +1,8 @@
 import argparse
 import logging
 from pathlib import Path
+import ast
+import json
 import pandas as pd
 from langchain_core.prompts import PromptTemplate
 
@@ -42,6 +44,59 @@ def set_concat(series, max_items=None, max_chars=None):
 
 logging.basicConfig(level=logging.INFO)
 
+def flatten_search_structured_output(df_search: pd.DataFrame) -> pd.DataFrame:
+    """
+    Normalize provider-specific structured outputs from the search step into flat columns.
+    Supports two formats observed in saved CSVs:
+    - Parsed dict under additional_kwargs.parsed
+    - JSON string embedded in first content block (list of dicts with 'text')
+    """
+    if df_search.empty:
+        return pd.DataFrame(columns=[
+            "index",
+            "group",
+            "financial_group_hq",
+            "group_industry",
+            "group_vertical",
+            "potential_disposal_country",
+            "potential_disposal_industry",
+            "potential_disposal_vertical",
+            "potential_disposal_company",
+        ])
+
+    parsed_series = pd.Series([None] * len(df_search), index=df_search.index)
+    if "additional_kwargs" in df_search.columns:
+        def _from_additional(v):
+            try:
+                return v.get("parsed") if isinstance(v, dict) else None
+            except Exception:
+                return None
+        parsed_series = df_search["additional_kwargs"].apply(_from_additional)
+
+    if parsed_series.isna().any() and "content" in df_search.columns:
+        def _from_content(cell: object):
+            try:
+                lst = ast.literal_eval(cell) if isinstance(cell, str) else cell
+                if isinstance(lst, list) and len(lst) > 0 and isinstance(lst[0], dict):
+                    text = lst[0].get("text")
+                    if isinstance(text, str):
+                        return json.loads(text)
+            except Exception:
+                return None
+            return None
+        fill_idx = parsed_series[parsed_series.isna()].index
+        parsed_series.loc[fill_idx] = df_search.loc[fill_idx, "content"].apply(_from_content)
+
+    parsed_map: dict[int, dict] = {}
+    for ridx, payload in parsed_series.items():
+        if isinstance(payload, dict):
+            parsed_map[ridx] = payload
+    df_search_flat = pd.DataFrame.from_dict(parsed_map, orient="index")
+    if not df_search_flat.empty:
+        df_search_flat["index"] = df_search.loc[df_search_flat.index, "index"].values
+    else:
+        df_search_flat = pd.DataFrame(columns=["index"])  # ensure merge key present
+    return df_search_flat
 def parse_args() -> argparse.Namespace:
      parser = argparse.ArgumentParser(description="Async articles tagging pipeline")
      parser.add_argument("--input", "-i", required=True, help="Input CSV file with classification results")
@@ -52,19 +107,19 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == "__main__":
-    args = parse_args()
-    logging.info("Starting extraction of carve-out targets...")
-
-    input_path = Path(args.input)
-    df = pd.read_csv(input_path)
-    logging.info(f"Loaded data from {input_path} with shape: {df.shape}")
-    df = df[df.is_relevant & df.is_about_carve_out]  # Filter relevant articles
-    logging.info(
-        f"Filtered relevant articles classified as carve-outs with shape: {df.shape}"
-    )
-    if args.test:
-        logging.info("Running in test mode, limiting to 200 rows")
-        df = df.head(200)
+     args = parse_args()
+     logging.info("Starting extraction of carve-out targets...")
+     
+     input_path = Path(args.input)
+     df = pd.read_csv(input_path)
+     logging.info(f"Loaded data from {input_path} with shape: {df.shape}")
+     df = df[df.is_relevant & df.is_about_carve_out]  # Filter relevant articles
+     logging.info(
+          f"Filtered relevant articles classified as carve-outs with shape: {df.shape}"
+     )
+     if args.test:
+          logging.info("Running in test mode, limiting to 200 rows")
+          df = df.head(200)
 
      factory = LLMChainFactory(model_name="o4-mini", provider="azure")
      summary_chain = factory.runnable_with_pydantic(
@@ -136,12 +191,11 @@ if __name__ == "__main__":
           partial_every=2800,
      )
 
-     df_results = df_results.drop(
-          columns=["source_name", "article_fragment", "potential_disposal_company"],
-          errors="ignore",
-     )
-     df_results = df_results.merge(df_search, on="index", how="left")
-     df_results = df_results.rename(
+     # --- Flatten search structured output ---
+     df_search_flat = flatten_search_structured_output(df_search)
+
+     # Normalize column names to our canonical schema
+     df_search_flat = df_search_flat.rename(
           columns={
                "financial_group_hq": "group_hq",
                "group_vertical": "vertical",
@@ -149,11 +203,18 @@ if __name__ == "__main__":
           }
      )
 
+     df_results = df_results.drop(
+     columns=["source_name", "article_fragment", "potential_disposal_company", "relevant"],
+     errors="ignore",
+)
+     # Merge flattened search enrichment
+     df_results = df_results.merge(df_search_flat, on="index", how="left")
+
      logging.info(
           "Extraction completed, merging full results with original data"
      )
 
-     df_results = df_results[df_results.relevant.fillna(False)]
+     df_results = df_results[df_results.relevant.fillna(True)]
      df_results = df_results.set_index("index").sort_index()
 
      full_df = df[
@@ -188,7 +249,6 @@ if __name__ == "__main__":
                "carve_out_stage": most_common,
                "source_name": lambda x: set_concat(x, 4),
                "title": lambda x: set_concat(x, 4),
-               "article_quote": lambda x: set_concat(x, 4),
                "article_fragment": lambda x: set_concat(
                     x, max_items=4, max_chars=2500
                ),

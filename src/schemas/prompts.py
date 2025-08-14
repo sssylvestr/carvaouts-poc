@@ -239,10 +239,6 @@ Using BOTH web search AND article analysis, determine:
   (Check: article mentions, corporate structure, ownership information, company websites)
   *Return null if not explicitly stated or determinable*
 
-- **Potential Disposal Company**: Name of the specific subsidiary or business unit considered for disposal
-  (Check: article mentions, subsidiary listings, business unit names)
-  *Return null if not mentioned or determinable; use search to clarify/validate if input provided*
-
 - **Financial Group HQ**: Two-letter country code of the ultimate parent financial group's headquarters
   (Check: article mentions, company websites, business registries)
   *Return null if not explicitly stated or determinable*
@@ -254,6 +250,12 @@ Using BOTH web search AND article analysis, determine:
 - **Group Vertical**: Specific subsector within the chosen industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)
   (Check: detailed business descriptions, company activities, operational focus)
   *Required field - use best available information*
+
+- **Potential Disposal Company**: Name of the specific subsidiary or business unit considered for disposal
+  (Check: article mentions, subsidiary listings, business unit names)
+  *Return null if not mentioned or determinable; use search to clarify/validate if input provided*
+
+- **Potential Disposal Location Relevancy**: True if the potential disposal is within the EEA region; False if outside the EEA; null if unclear.
 
 - **Potential Disposal Country**: Two-letter country code where the potential disposal company is based
   (Check: article mentions, subsidiary locations, operational geographies)
