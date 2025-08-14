@@ -22,17 +22,17 @@ class CarveOutIdentificationSummary(BaseModel):
 
     relevant: Optional[bool] = Field(
         default=None,
-        description="Boolean indicator if the article meets regional criteria for potential disposals within the EEA",
+        description="True if the potential disposal is within the EEA; False if outside the EEA; null if unclear.",
     )
     interest_score: Literal[1, 2, 3, 4, 5] = Field(description="Interest level of the carve-out opportunity on a 1–5 scale (1=low, 5=high), based on timing and early-stage indicators")
     rationale: str = Field(description="Brief rationale (1-3 sentences with quotes) for why the carve-out opportunity exists, with included direct quotes from the article")
 
 class SearchCarveOutIdentificationSummary(BaseModel):
     group: Optional[str] = Field(description="Ultimate parent financial group of the target company (if explicitly stated)")
-    potential_disposal_company: Optional[str] = Field(description="Name of the specific subsidiary or business unit considered for disposal (if mentioned)")
     financial_group_hq: Optional[str] = Field(description="Headquarters of the ultimate parent financial group; two-letter country code")
     group_industry: str = Field(description="Sector of the financial parent group (e.g. 'Financial Services', 'Technology & Payments', 'Healthcare', 'Services & Industrial Tech')")
     group_vertical: str = Field(description="Specific subsector within the chosen industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)")
+    potential_disposal_company: Optional[str] = Field(description="Name of the specific subsidiary or business unit considered for disposal (if mentioned)")
     potential_disposal_country: Optional[str] = Field(description="Two-letter EEA country code of the disposal company")  
     potential_disposal_industry: str = Field(description="Sector of the disposal company (e.g. 'Financial Services', 'Technology & Payments', 'Healthcare', 'Services & Industrial Tech')")
     potential_disposal_vertical: str = Field(description="Specific subsector within the disposal company's industry (e.g., Banking, Insurance, Asset Management, Digital Payments, Fintech, Software, Pharmaceuticals, Medical Devices, Healthcare Services)")
