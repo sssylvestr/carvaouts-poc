@@ -309,7 +309,7 @@ requires-dist = [
     { name = "ipykernel", marker = "extra == 'jupyter'" },
     { name = "ipython", marker = "extra == 'jupyter'" },
     { name = "ipywidgets", marker = "extra == 'jupyter'" },
-    { name = "llm-utils", specifier = "==0.0.2.3" },
+    { name = "llm-utils", specifier = "==0.0.2.7" },
     { name = "lxml", specifier = "==5.4.0" },
     { name = "matplotlib", marker = "extra == 'jupyter'", specifier = "==3.10.3" },
     { name = "nltk", specifier = "==3.9.1" },
@@ -1599,7 +1599,7 @@ wheels = [
 
 [[package]]
 name = "llm-utils"
-version = "0.0.2.3"
+version = "0.0.2.7"
 source = { registry = "https://nordiccapital.pkgs.visualstudio.com/NC-Demos/_packaging/genai-feed/pypi/simple/" }
 dependencies = [
     { name = "langchain" },
@@ -1614,7 +1614,7 @@ dependencies = [
     { name = "tiktoken" },
 ]
 wheels = [
-    { url = "https://nordiccapital.pkgs.visualstudio.com/94b8f937-ca3c-4f2b-83cf-fdc39553c6ca/_packaging/bb5693a2-241b-4bb1-a909-6374c9619105/pypi/download/llm-utils/0.0.2.3/llm_utils-0.0.2.3-py3-none-any.whl", hash = "sha256:37ec038fa8169f214550c8b80e43230b05d1da52046503d924f840b663c6f626" },
+    { url = "https://nordiccapital.pkgs.visualstudio.com/94b8f937-ca3c-4f2b-83cf-fdc39553c6ca/_packaging/bb5693a2-241b-4bb1-a909-6374c9619105/pypi/download/llm-utils/0.0.2.7/llm_utils-0.0.2.7-py3-none-any.whl", hash = "sha256:2fcd9c7c769d16881f52e6b488e93db19cc78ef7f51520c8eac63faf882e70b8" },
 ]
 
 [[package]]
@@ -2068,7 +2068,7 @@ wheels = [
 
 [[package]]
 name = "openai"
-version = "1.77.0"
+version = "1.98.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -2080,9 +2080,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cc/c0/ea2e9a78bf88404b97e7b708f0823b4699ab2ee3f5564425b8531a890a43/openai-1.77.0.tar.gz", hash = "sha256:897969f927f0068b8091b4b041d1f8175bcf124f7ea31bab418bf720971223bc", size = 435778, upload-time = "2025-05-02T19:17:27.971Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d8/9d/52eadb15c92802711d6b6cf00df3a6d0d18b588f4c5ba5ff210c6419fc03/openai-1.98.0.tar.gz", hash = "sha256:3ee0fcc50ae95267fd22bd1ad095ba5402098f3df2162592e68109999f685427", size = 496695, upload-time = "2025-07-30T12:48:03.701Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/90/58/37ae3ca75936b824a0a5ca30491c968192007857319d6836764b548b9d9b/openai-1.77.0-py3-none-any.whl", hash = "sha256:07706e91eb71631234996989a8ea991d5ee56f0744ef694c961e0824d4f39218", size = 662031, upload-time = "2025-05-02T19:17:26.151Z" },
+    { url = "https://files.pythonhosted.org/packages/a8/fe/f64631075b3d63a613c0d8ab761d5941631a470f6fa87eaaee1aa2b4ec0c/openai-1.98.0-py3-none-any.whl", hash = "sha256:b99b794ef92196829120e2df37647722104772d2a74d08305df9ced5f26eae34", size = 767713, upload-time = "2025-07-30T12:48:01.264Z" },
 ]
 
 [[package]]
