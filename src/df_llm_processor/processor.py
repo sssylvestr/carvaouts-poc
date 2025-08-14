@@ -15,15 +15,17 @@ logger = logging.getLogger(__name__)
 REQUESTS_PER_MIN = 1_000  # Azure allocation, but burst is 1–2 %
 TOKENS_PER_MIN = 1_000_000
 
-req_limiter = AsyncLimiter(REQUESTS_PER_MIN, 60)  # smooth 60-s bucket
-tok_limiter = AsyncLimiter(TOKENS_PER_MIN, 60)
-
 # initial guess for Azure’s 10-s burst bucket (will self-correct)
 BURST_BUCKET = 20
-burst_sem = asyncio.Semaphore(BURST_BUCKET)
 
 
-async def safe_invoke(row: Dict[str, Any], chain) -> Tuple[Any, int]:
+async def safe_invoke(
+    row: Dict[str, Any],
+    chain,
+    req_limiter: AsyncLimiter,
+    tok_limiter: AsyncLimiter,
+    burst_sem: asyncio.Semaphore,
+) -> Tuple[Any, int]:
     """
     Safely invoke an LLM chain with rate limiting controls.
 
@@ -77,10 +79,19 @@ async def _run_row_with_retry(
     *,
     max_retries: int,
     initial_delay: float,
+    req_limiter: AsyncLimiter,
+    tok_limiter: AsyncLimiter,
+    burst_sem: asyncio.Semaphore,
 ):
     for attempt in range(1, max_retries + 1):
         try:
-            return await safe_invoke(row_dict, chain)
+            return await safe_invoke(
+                row_dict,
+                chain,
+                req_limiter,
+                tok_limiter,
+                burst_sem,
+            )
         except Exception as e:
             if attempt >= max_retries:
                 raise RuntimeError(f"Row {row_dict.get('index')} failed after {max_retries} attempts: {e}") from e
@@ -109,6 +120,11 @@ async def process_df_rows(
         "companies": "original_companies",
     },
 ) -> pd.DataFrame:
+    # Create per-event-loop limiters/semaphore to avoid cross-loop reuse
+    req_limiter = AsyncLimiter(REQUESTS_PER_MIN, 60)
+    tok_limiter = AsyncLimiter(TOKENS_PER_MIN, 60)
+    burst_sem = asyncio.Semaphore(BURST_BUCKET)
+
     """
     Process DataFrame rows in parallel through an LLM chain with adaptive rate limiting.
 
@@ -250,6 +266,9 @@ async def process_df_rows(
                 chain,
                 max_retries=max_retries,
                 initial_delay=initial_delay,
+                req_limiter=req_limiter,
+                tok_limiter=tok_limiter,
+                burst_sem=burst_sem,
             )
         )
         t.row_meta = row_dict # type: ignore
