@@ -149,7 +149,7 @@ Given the provided news article, perform the following:
 
 
  2. **Assess** clearly:
-     - **Relevant:** True if the potential disposal is within the EEA region; False if outside the EEA; null if unclear.
+    - **Relevant:** True if the potential disposal is within the EEA region; False if outside the EEA; null if unclear.
     - **Interest Score:** integer 1–5 computed from two factors only: Stage (1–5) and Signal Quality (1–5). Use anchors:
        - Stage: 1=completed/past-only; 3="considering options"/"strategic review"; 5=advisers hired/mandate or process launching.
        - Signal: 1=generic strategy talk; 3=disposal implied (segment/region hinted); 5=named subsidiary/unit with concrete action (e.g., "for sale", advisor/mandate).
