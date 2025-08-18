@@ -170,12 +170,12 @@ if __name__ == "__main__":
      search_chain = search_template | search_chain
 
      search_cols_mapping = {
-          "source_name": "news_source",
-          "article_fragment": "article_body",
-          "target_company": "target_company",
-          "potential_disposal": "potential_disposal",
-          "potential_disposal_company": "potential_disposal_company",
-     }
+        "source_name": "news_source",
+        "article_fragment": "article_body",
+        "target_company": "target_company",
+        "potential_disposal": "potential_disposal",
+        "potential_disposal_company": "potential_disposal_company",
+    }
 
      # Process search enrichment using the same synchronous wrapper.  The
      # run_pipeline_sync helper handles all asynchronous execution and
@@ -191,47 +191,44 @@ if __name__ == "__main__":
           partial_every=2800,
      )
 
-     # --- Flatten search structured output ---
-     df_search_flat = flatten_search_structured_output(df_search)
-
-     # Normalize column names to our canonical schema
-     df_search_flat = df_search_flat.rename(
-          columns={
-               "financial_group_hq": "group_hq",
-               "group_vertical": "vertical",
-               "potential_disposal_industry": "disposal_nc_sector",
-          }
-     )
-
      df_results = df_results.drop(
-     columns=["source_name", "article_fragment", "potential_disposal_company", "relevant"],
-     errors="ignore",
-)
+          columns=["source_name", "article_fragment", "potential_disposal_company"],
+          errors="ignore",
+     )
+    
+     df_results = df_results.merge(df_search, on="index", how="left")
+     df_results = df_results.rename(
+            columns={
+                "financial_group_hq": "group_hq",
+                "group_vertical": "vertical",
+                "potential_disposal_industry": "disposal_nc_sector",
+            }
+        )
      # Merge flattened search enrichment
-     df_results = df_results.merge(df_search_flat, on="index", how="left")
+     df_results = df_results.merge(df_search, on="index", how="left")
 
      logging.info(
           "Extraction completed, merging full results with original data"
      )
 
-     df_results = df_results[df_results.relevant.fillna(True)]
+    #  df_results = df_results[df_results.relevant.fillna(True)]
      df_results = df_results.set_index("index").sort_index()
 
      full_df = df[
-          [
-               "source_name",
-               "title",
-               "article_fragment",
-               "carve_out_stage",
-               "reasoning",
-          ]
-     ].merge(
-          df_results,
-          left_index=True,
-          right_index=True,
-          how="left",
-          suffixes=["_original", "_new"],
-     )  # type: ignore
+            [
+                "source_name",
+                "title",
+                "article_fragment",
+                "carve_out_stage",
+                "reasoning",
+            ]
+        ].merge(
+            df_results,
+            left_index=True,
+            right_index=True,
+            how="left",
+            suffixes=["_original", "_new"],
+        )
 
      grouped_summary = full_df.groupby("target_company").agg(
           {
