@@ -198,14 +198,12 @@ if __name__ == "__main__":
     
      df_results = df_results.merge(df_search, on="index", how="left")
      df_results = df_results.rename(
-            columns={
-                "financial_group_hq": "group_hq",
-                "group_vertical": "vertical",
-                "potential_disposal_industry": "disposal_nc_sector",
-            }
-        )
-     # Merge flattened search enrichment
-     df_results = df_results.merge(df_search, on="index", how="left")
+          columns={
+               "financial_group_hq": "group_hq",
+               "group_vertical": "vertical",
+               "potential_disposal_industry": "disposal_nc_sector",
+          }
+     )
 
      logging.info(
           "Extraction completed, merging full results with original data"
