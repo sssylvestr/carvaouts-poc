@@ -245,7 +245,10 @@ async def process_df_rows(
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # dataframe → list[dict]
-    rows: List[Dict[str, Any]] = df.rename(columns=cols_mapping).reset_index().to_dict(orient="records") #type: ignore
+    df = df.rename(columns=cols_mapping)
+    if "index" in df.columns:
+        df = df.rename(columns={"index": "original_index"})
+    rows: List[Dict[str, Any]] = df.reset_index().to_dict(orient="records") #type: ignore
 
     # Inject current date in ISO format for prompt recency/completeness assessments
     today_iso = datetime.now().strftime("%Y-%m-%d")

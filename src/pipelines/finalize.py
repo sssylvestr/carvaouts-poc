@@ -191,6 +191,11 @@ if __name__ == "__main__":
           partial_every=2800,
      )
 
+     if "original_index" in df_search.columns:
+          df_search = df_search.drop(columns=["index"], errors="ignore").rename(
+               columns={"original_index": "index"}
+          )
+
      df_results = df_results.drop(
           columns=["source_name", "article_fragment", "potential_disposal_company"],
           errors="ignore",
